@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href={% static "css/style.css" %} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="car-rent">
+      <div class="view">
+        <div class="div">
+          <div class="overlap-group-wrapper">
+            <div class="overlap-group"><div class="text-wrapper">Показать</div></div>
+          </div>
+          <div class="overlap-wrapper">
+            <div class="overlap-group">
+              <img class="img" src={% static "img/dowm.png" %} />
+              <div class="text-wrapper-2">Класс</div>
+            </div>
+          </div>
+          <div class="div-wrapper">
+            <div class="overlap-group">
+              <img class="img" src={% static "img/dowm.png" %} />
+              <div class="text-wrapper-2">Марка</div>
+            </div>
+          </div>
+          <div class="element"><img class="img" src={% static "img/size-20.png" %}/></div>
+          <div class="calendar-wrapper"><img class="img" src={% static "img/size-20.png" %}/></div>
+        </div>
+        <p class="p">Аренда автомобилей в Рязани<br />У нас Вы всегда подберёте то, что Вам по вкусу!</p>
+        <header class="header">
+          <div class="view-2"><div class="text-wrapper-3">Вход</div></div>
+          <div class="text-wrapper-4">Регистрация</div>
+          <div class="text-wrapper-5">О нас</div>
+          <div class="text-wrapper-6">Контакты</div>
+          <div class="text-wrapper-7">Условия</div>
+          <div class="text-wrapper-8">Цены</div>
+          <div class="text-wrapper-9">Услуги</div>
+          <div class="text-wrapper-10">Автопарк</div>
+          <div class="view-3">
+            <div class="overlap-group-2">
+<!--              <div class="ellipse"></div>-->
+              <img class="car" src={% static "img/Логотип.png" %} />
+<!--              <div class="text-wrapper-11">АрендаRzn</div>-->
+            </div>
+          </div>
+          <img class="line" src="img/line-1.svg" />
+        </header>
+      </div>
+    </div>
+  </body>
+</html>

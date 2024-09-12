@@ -1,0 +1,304 @@
+.car-rent {
+  display: flex;
+  flex-direction: column;
+  height: 2285px;
+  align-items: flex-start;
+  gap: 200px;
+  position: relative;
+}
+
+.car-rent .view {
+  position: relative;
+  width: 1280px;
+  height: 2285px;
+  background-color: #ffffff;
+}
+
+.car-rent .div {
+  position: absolute;
+  width: 786px;
+  height: 60px;
+  top: 547px;
+  left: 247px;
+}
+
+.car-rent .overlap-group-wrapper {
+  position: absolute;
+  width: 156px;
+  height: 60px;
+  top: 0;
+  left: 632px;
+}
+
+.car-rent .overlap-group {
+  position: relative;
+  width: 154px;
+  height: 60px;
+  background-color: #d9d9d9;
+  border-radius: 7px;
+}
+
+.car-rent .text-wrapper {
+  position: absolute;
+  top: 22px;
+  left: 33px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .overlap-wrapper {
+  position: absolute;
+  width: 156px;
+  height: 60px;
+  top: 0;
+  left: 474px;
+}
+
+.car-rent .img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  left: 120px;
+}
+
+.car-rent .text-wrapper-2 {
+  position: absolute;
+  top: 22px;
+  left: 14px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .div-wrapper {
+  position: absolute;
+  width: 156px;
+  height: 60px;
+  top: 0;
+  left: 316px;
+}
+
+.car-rent .element {
+  position: absolute;
+  width: 154px;
+  height: 60px;
+  top: 0;
+  left: 158px;
+  background-color: #d9d9d9;
+  border-radius: 7px;
+}
+
+.car-rent .calendar-wrapper {
+  position: absolute;
+  width: 154px;
+  height: 60px;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+  border-radius: 7px;
+}
+
+.car-rent .p {
+  position: absolute;
+  width: 786px;
+  top: 268px;
+  left: 247px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #232323;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.car-rent .header {
+  position: absolute;
+  width: 1080px;
+  height: 108px;
+  top: 3px;
+  left: 100px;
+  background-color: transparent;
+  box-shadow: 3px 3px 3px #00000040;
+}
+
+.car-rent .view-2 {
+  position: absolute;
+  width: 75px;
+  height: 33px;
+  top: 36px;
+  left: 1005px;
+  background-color: #d9d9d9;
+  border-radius: 7px;
+}
+
+.car-rent .text-wrapper-3 {
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-4 {
+  position: absolute;
+  top: 45px;
+  left: 893px;
+  font-family: "Roboto-Light", Helvetica;
+  font-weight: 300;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-5 {
+  position: absolute;
+  top: 43px;
+  left: 688px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-6 {
+  position: absolute;
+  top: 43px;
+  left: 581px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-7 {
+  position: absolute;
+  top: 43px;
+  left: 483px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-8 {
+  position: absolute;
+  top: 43px;
+  left: 405px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-9 {
+  position: absolute;
+  top: 43px;
+  left: 319px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .text-wrapper-10 {
+  position: absolute;
+  top: 43px;
+  left: 213px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .view-3 {
+  position: absolute;
+  width: 147px;
+  height: 106px;
+  top: 0;
+  left: 0;
+}
+
+.car-rent .overlap-group-2 {
+  position: relative;
+  width: 145px;
+  height: 106px;
+  left: -1px;
+}
+
+.car-rent .ellipse {
+  position: absolute;
+  width: 106px;
+  height: 106px;
+  top: 0;
+  left: 21px;
+  background-color: #d9d9d9;
+  border-radius: 52.84px/52.8px;
+}
+
+.car-rent .car {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+/*  top: 32px;
+  left: 14px; */
+  object-fit: cover;
+}
+
+.car-rent .text-wrapper-11 {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  -webkit-text-stroke: 1px #ffffffc2;
+  font-family: "Pacifico-Regular", Helvetica;
+  font-weight: 400;
+  color: #336db8;
+  font-size: 30px;
+  letter-spacing: -0.15px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.car-rent .line {
+  position: absolute;
+  width: 1080px;
+  height: 2px;
+  top: 106px;
+  left: 0;
+  object-fit: cover;
+}
