@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
+{% get_static_prefix as static %}
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>АрендаRzn</title>
-  <link rel="stylesheet" href={% static "css/style.css" %} />
+  <link rel="stylesheet" href='{% static "css/index.css" %}' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -16,10 +17,10 @@
     <header class="header">
       {% comment %} <div class="logo">
         <div class="ellipse"></div>
-        <img class="logo-car" src={% static "img/car1-1.png" %} alt="logo">
+        <img class="logo-car" src='{% static "img/car1-1.png" %}' alt="logo">
         <div class="brand-name">АрендаRzn</div>
       </div> {% endcomment %}
-      <div><img src={% static "/img/logo.png" %} alt="logo"></div>
+      <div><img src='{% static "/img/logo.png" %}' alt="logo"></div>
 
       <nav class="nav-menu">
         <a href="#autopark">Автопарк</a>
@@ -47,67 +48,34 @@
         <div class="overlap">
           <div class="select-button">
             <p>Начало</p>
-            <img class="img" src={% static "img/icons/calendar.png" %} />
+            <img class="img" src='{% static "img/icons/calendar.png" %}' />
           </div>
           <div class="select-button">
             <p>Окончание</p>
-            <img class="img" src={% static "img/icons/calendar.png" %} />
+            <img class="img" src='{% static "img/icons/calendar.png" %}' />
           </div>
           <div class="select-button">
             <p>Марка</p>
-            <img class="img" src={% static "img/icons/down.png" %} />
+            <img class="img" src='{% static "img/icons/down.png" %}' />
           </div>
           <div class="select-button">
             <p>Класс</p>
-            <img class="img" src={% static "img/icons/down.png" %} />
+            <img class="img" src='{% static "img/icons/down.png" %}' />
           </div>
           <div class="select-button">
             <p>Показать</p>
           </div>
         </div>
         <div class="car-cards">
+          {% for i in cars %}
           <div class="car-card">
-            <img src={% static "img/cars/car1/car1-1.jpg" %} alt="Car 1" class="car-image">
+            <img class="car-image" src="/static/{{ i.img }}" >
             <div class="car-info">
-              <h3>Car Model 1</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
+              <h3>{{ i.name }}</h3>
+              <p>{{ i.discription }}</p>
             </div>
           </div>
-          <div class="car-card">
-            <img src={% static "img/cars/car2/car2-1.jpg" %} alt="Car 2" class="car-image">
-            <div class="car-info">
-              <h3>Car Model 2</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
-            </div>
-          </div>
-          <div class="car-card">
-            <img src={% static "img/cars/car3/car3-1.jpg" %} alt="Car 3" class="car-image">
-            <div class="car-info">
-              <h3>Car Model 3</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
-            </div>
-          </div>
-          <div class="car-card">
-            <img src={% static "img/cars/car4/car4-1.jpg" %} alt="Car 4" class="car-image">
-            <div class="car-info">
-              <h3>Car Model 4</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
-            </div>
-          </div>
-          <div class="car-card">
-            <img src={% static "img/cars/car5/car5-1.jpg" %} alt="Car 5" class="car-image">
-            <div class="car-info">
-              <h3>Car Model 5</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
-            </div>
-          </div>
-          <div class="car-card">
-            <img src={% static "img/cars/car6/car6-1.jpg" %} alt="Car 6" class="car-image">
-            <div class="car-info">
-              <h3>Car Model 6</h3>
-              <p>Описание автомобиля: класс, марка, особенности.</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <button id="load-more" class="load-more">Показать ещё</button>
       </div>
@@ -116,22 +84,12 @@
     <section class="services-section">
       <h2>Наши услуги</h2>
       <div class="services-list">
+        {% for i in services %}
         <div class="service-item">
-          <h3>Фотосессия на фоне авто</h3>
-          <p>Организуем профессиональную фотосессию с вашими любимыми автомобилями. Отличный выбор для особых событий или для создания уникального контента в социальных сетях.</p>
+          <h3>{{ i.name }}</h3>
+          <p>{{ i.discription }}</p>
         </div>
-        <div class="service-item">
-          <h3>Аренда авто на мероприятие</h3>
-          <p>Идеальное решение для свадьбы, корпоратива или любого другого важного события. Предоставим вам автомобиль, который подчеркнёт вашу важность на мероприятии.</p>
-        </div>
-        <div class="service-item">
-          <h3>Трансфер в аэропорт</h3>
-          <p>Удобный и быстрый трансфер в любой аэропорт. Мы заберем вас вовремя и доставим в нужное место с комфортом.</p>
-        </div>
-        <div class="service-item">
-          <h3>Аренда автомобиля с водителем</h3>
-          <p>Не хотите беспокоиться о вождении? Возьмите автомобиль вместе с опытным водителем, чтобы расслабиться и наслаждаться поездкой.</p>
-        </div>
+        {% endfor %}
       </div>
     </section>
 
