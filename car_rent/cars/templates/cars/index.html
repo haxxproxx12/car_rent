@@ -14,11 +14,13 @@
 <body>
   <div class="car-rent">
     <header class="header">
-      <div class="logo">
+      {% comment %} <div class="logo">
         <div class="ellipse"></div>
         <img class="logo-car" src={% static "img/car1-1.png" %} alt="logo">
         <div class="brand-name">АрендаRzn</div>
-      </div>
+      </div> {% endcomment %}
+      <div><img src={% static "/img/logo.png" %} alt="logo"></div>
+
       <nav class="nav-menu">
         <a href="#autopark">Автопарк</a>
         <a href="#services">Услуги</a>
@@ -40,7 +42,7 @@
     </section>
 
     <section class="car-selection">
-      <h5>Выберите срок аренды, марку или класс автомобиля</h5>
+      <h2>Выберите срок аренды, марку или класс автомобиля</h2>
       <div class="selection-options">
         <div class="overlap">
           <div class="select-button">
@@ -108,6 +110,28 @@
           </div>
         </div>
         <button id="load-more" class="load-more">Показать ещё</button>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <h2>Наши услуги</h2>
+      <div class="services-list">
+        <div class="service-item">
+          <h3>Фотосессия на фоне авто</h3>
+          <p>Организуем профессиональную фотосессию с вашими любимыми автомобилями. Отличный выбор для особых событий или для создания уникального контента в социальных сетях.</p>
+        </div>
+        <div class="service-item">
+          <h3>Аренда авто на мероприятие</h3>
+          <p>Идеальное решение для свадьбы, корпоратива или любого другого важного события. Предоставим вам автомобиль, который подчеркнёт вашу важность на мероприятии.</p>
+        </div>
+        <div class="service-item">
+          <h3>Трансфер в аэропорт</h3>
+          <p>Удобный и быстрый трансфер в любой аэропорт. Мы заберем вас вовремя и доставим в нужное место с комфортом.</p>
+        </div>
+        <div class="service-item">
+          <h3>Аренда автомобиля с водителем</h3>
+          <p>Не хотите беспокоиться о вождении? Возьмите автомобиль вместе с опытным водителем, чтобы расслабиться и наслаждаться поездкой.</p>
+        </div>
       </div>
     </section>
 
