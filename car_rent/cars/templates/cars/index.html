@@ -1,57 +1,121 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href={% static "css/style.css" %} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="car-rent">
-      <div class="view">
-        <div class="div">
-          <div class="overlap-group-wrapper">
-            <div class="overlap-group"><div class="text-wrapper">Показать</div></div>
-          </div>
-          <div class="overlap-wrapper">
-            <div class="overlap-group">
-              <img class="img" src={% static "img/dowm.png" %} />
-              <div class="text-wrapper-2">Класс</div>
-            </div>
-          </div>
-          <div class="div-wrapper">
-            <div class="overlap-group">
-              <img class="img" src={% static "img/dowm.png" %} />
-              <div class="text-wrapper-2">Марка</div>
-            </div>
-          </div>
-          <div class="element"><img class="img" src={% static "img/size-20.png" %}/></div>
-          <div class="calendar-wrapper"><img class="img" src={% static "img/size-20.png" %}/></div>
-        </div>
-        <p class="p">Аренда автомобилей в Рязани<br />У нас Вы всегда подберёте то, что Вам по вкусу!</p>
-        <header class="header">
-          <div class="view-2"><div class="text-wrapper-3">Вход</div></div>
-          <div class="text-wrapper-4">Регистрация</div>
-          <div class="text-wrapper-5">О нас</div>
-          <div class="text-wrapper-6">Контакты</div>
-          <div class="text-wrapper-7">Условия</div>
-          <div class="text-wrapper-8">Цены</div>
-          <div class="text-wrapper-9">Услуги</div>
-          <div class="text-wrapper-10">Автопарк</div>
-          <div class="view-3">
-            <div class="overlap-group-2">
-<!--              <div class="ellipse"></div>-->
-              <img class="car" src={% static "img/Логотип.png" %} />
-<!--              <div class="text-wrapper-11">АрендаRzn</div>-->
-            </div>
-          </div>
-          <img class="line" src="img/line-1.svg" />
-        </header>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АрендаRzn</title>
+  <link rel="stylesheet" href={% static "css/style.css" %} />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="car-rent">
+    <header class="header">
+      <div class="logo">
+        <div class="ellipse"></div>
+        <img class="logo-car" src={% static "img/car1-1.png" %} alt="logo">
+        <div class="brand-name">АрендаRzn</div>
       </div>
-    </div>
-  </body>
+      <nav class="nav-menu">
+        <a href="#autopark">Автопарк</a>
+        <a href="#services">Услуги</a>
+        <a href="#prices">Цены</a>
+        <a href="#conditions">Условия</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#about">О нас</a>
+      </nav>
+      <div class="auth">
+        <a href="#register" class="register-btn">Регистрация</a>
+        <a href="#login" class="login-btn">Вход</a>
+      </div>
+    </header>
+
+    <section class="welcome-section">
+      <h1>Добро пожаловать!</h1>
+      <p>Аренда автомобилей в Рязани</p>
+      <p>У нас Вы всегда подберёте то, что Вам по вкусу!</p>
+    </section>
+
+    <section class="car-selection">
+      <h5>Выберите срок аренды, марку или класс автомобиля</h5>
+      <div class="selection-options">
+        <div class="overlap">
+          <div class="select-button">
+            <p>Начало</p>
+            <img class="img" src={% static "img/calendar.png" %} />
+          </div>
+          <div class="select-button">
+            <p>Окончание</p>
+            <img class="img" src={% static "img/calendar.png" %} />
+          </div>
+          <div class="select-button">
+            <p>Марка</p>
+            <img class="img" src={% static "img/down.png" %} />
+          </div>
+          <div class="select-button">
+            <p>Класс</p>
+            <img class="img" src={% static "img/down.png" %} />
+          </div>
+          <div class="select-button">
+            <p>Показать</p>
+          </div>
+        </div>
+        <div class="car-cards">
+          <div class="car-card">
+            <img src={% static "img/cars/car1/car1-1.jpg" %} alt="Car 1" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 1</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+          <div class="car-card">
+            <img src={% static "img/cars/car2/car2-1.jpg" %} alt="Car 2" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 2</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+          <div class="car-card">
+            <img src={% static "img/cars/car3/car3-1.jpg" %} alt="Car 3" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 3</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+          <div class="car-card">
+            <img src={% static "img/cars/car4/car4-1.jpg" %} alt="Car 4" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 4</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+          <div class="car-card">
+            <img src={% static "img/cars/car5/car5-1.jpg" %} alt="Car 5" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 5</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+          <div class="car-card">
+            <img src={% static "img/cars/car6/car6-1.jpg" %} alt="Car 6" class="car-image">
+            <div class="car-info">
+              <h3>Car Model 6</h3>
+              <p>Описание автомобиля: класс, марка, особенности.</p>
+            </div>
+          </div>
+        </div>
+        <button id="load-more" class="load-more">Показать ещё</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 ООО “Не ваше дело”. Все права защищены</p>
+      <address>370001, Печальная область, Тоскливый район, город Грусть, проспект Разочарования, дом 13</address>
+      <p>Телефон: +7 (999) 999-99-99</p>
+    </footer>
+  </div>
+</body>
 </html>
