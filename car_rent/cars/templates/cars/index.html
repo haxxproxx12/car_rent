@@ -45,19 +45,19 @@
         <div class="overlap">
           <div class="select-button">
             <p>Начало</p>
-            <img class="img" src={% static "img/calendar.png" %} />
+            <img class="img" src={% static "img/icons/calendar.png" %} />
           </div>
           <div class="select-button">
             <p>Окончание</p>
-            <img class="img" src={% static "img/calendar.png" %} />
+            <img class="img" src={% static "img/icons/calendar.png" %} />
           </div>
           <div class="select-button">
             <p>Марка</p>
-            <img class="img" src={% static "img/down.png" %} />
+            <img class="img" src={% static "img/icons/down.png" %} />
           </div>
           <div class="select-button">
             <p>Класс</p>
-            <img class="img" src={% static "img/down.png" %} />
+            <img class="img" src={% static "img/icons/down.png" %} />
           </div>
           <div class="select-button">
             <p>Показать</p>
@@ -112,9 +112,28 @@
     </section>
 
     <footer>
-      <p>&copy; 2024 ООО “Не ваше дело”. Все права защищены</p>
-      <address>370001, Печальная область, Тоскливый район, город Грусть, проспект Разочарования, дом 13</address>
-      <p>Телефон: +7 (999) 999-99-99</p>
+      <div class="place">
+        <div><img src={% static "/img/logo.png" %} alt="logo"></div>
+        <div>
+          <p class="info">370001, Печальная область, Тоскливый район, город Грусть, проспект Разочарования, дом 13</p>
+          <p class="info">Телефон: +7 (999) 999-99-99</p>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="https://vk.com" target="_blank" class="social-icon vk">
+          <img src={% static "img/icons/vkontakte.png" %} alt="VK">
+        </a>
+        <a href="https://facebook.com" target="_blank" class="social-icon facebook">
+          <img src={% static "img/icons/facebook.png" %} alt="Facebook">
+        </a>
+        <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+          <img src={% static "img/icons/instagram.png" %} alt="Instagram">
+        </a>
+        <a href="https://twitter.com" target="_blank" class="social-icon twitter">
+          <img src={% static "img/icons/twitter.png" %} alt="Twitter">
+        </a>
+      </div>
+      <p class="copy">&copy; 2024 &ensp; ООО “Не ваше дело”. Все права защищены.</p>
     </footer>
   </div>
 </body>
