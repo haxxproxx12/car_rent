@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>АрендаRzn</title>
+  <link rel="stylesheet" href='{% static "css/global.css" %}' />
   <link rel="stylesheet" href='{% static "css/index.css" %}' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +16,10 @@
 <body>
   <div class="car-rent">
     <header class="header">
-      {% comment %} <div class="logo">
-        <div class="ellipse"></div>
-        <img class="logo-car" src='{% static "img/car1-1.png" %}' alt="logo">
-        <div class="brand-name">АрендаRzn</div>
-      </div> {% endcomment %}
-      <div><img src='{% static "/img/logo.png" %}' alt="logo"></div>
+      <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
 
       <nav class="nav-menu">
-        <a href="#autopark">Автопарк</a>
+        <a href="{% url 'rent' %}">Автопарк</a>
         <a href="#services">Услуги</a>
         <a href="#prices">Цены</a>
         <a href="#conditions">Условия</a>
@@ -46,25 +42,19 @@
       <h2>Выберите срок аренды, марку или класс автомобиля</h2>
       <div class="selection-options">
         <div class="overlap">
-          <div class="select-button">
-            <p>Начало</p>
-            <img class="img" src='{% static "img/icons/calendar.png" %}' />
-          </div>
-          <div class="select-button">
-            <p>Окончание</p>
-            <img class="img" src='{% static "img/icons/calendar.png" %}' />
-          </div>
-          <div class="select-button">
-            <p>Марка</p>
-            <img class="img" src='{% static "img/icons/down.png" %}' />
-          </div>
-          <div class="select-button">
-            <p>Класс</p>
-            <img class="img" src='{% static "img/icons/down.png" %}' />
-          </div>
-          <div class="select-button">
-            <p>Показать</p>
-          </div>
+            <button class="select-button">Начало
+              <img class="img" src='{% static "img/icons/calendar.png" %}' />
+            </button>
+            <button class="select-button">Окончание
+              <img class="img" src='{% static "img/icons/calendar.png" %}' />
+            </button>
+            <button class="select-button">Марка
+              <img class="img" src='{% static "img/icons/down.png" %}' />
+            </button>
+            <button class="select-button">Класс
+              <img class="img" src='{% static "img/icons/down.png" %}' />
+            </button>
+            <button class="select-button">Показать</button>
         </div>
         <div class="car-cards">
           {% for i in cars %}
@@ -81,6 +71,8 @@
       </div>
     </section>
 
+    <hr align="center" width="500" size="1" color="#336db8" />
+
     <section class="services-section">
       <h2>Наши услуги</h2>
       <div class="services-list">
@@ -95,7 +87,7 @@
 
     <footer>
       <div class="place">
-        <div><img src={% static "/img/logo.png" %} alt="logo"></div>
+        <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
         <div>
           <p class="info">370001, Печальная область, Тоскливый район, город Грусть, проспект Разочарования, дом 13</p>
           <p class="info">Телефон: +7 (999) 999-99-99</p>
