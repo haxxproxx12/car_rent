@@ -1,0 +1,52 @@
+-- Таблица для хранения информации о клиентах
+CREATE TABLE Customers (
+    customer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    phone TEXT
+);
+
+-- Таблица для хранения классов автомобилей
+CREATE TABLE CarClasses (
+    class_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    class_name TEXT NOT NULL
+);
+
+-- Таблица для хранения информации об автомобилях
+CREATE TABLE Cars (
+    car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    price_per_day REAL NOT NULL,
+    class_id INTEGER,
+    FOREIGN KEY (class_id) REFERENCES CarClasses(class_id)
+);
+
+-- Таблица для хранения информации об арендах
+CREATE TABLE Rentals (
+    rental_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id INTEGER,
+    car_id INTEGER,
+    rental_start_date DATE NOT NULL,
+    rental_end_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (car_id) REFERENCES Cars(car_id)
+);
+
+-- Таблица для хранения информации об услугах
+CREATE TABLE Services (
+    service_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    service_name TEXT NOT NULL,
+    service_price REAL NOT NULL
+);
+
+-- Таблица для связи аренд с выбранными услугами
+CREATE TABLE RentalServices (
+    rental_id INTEGER,
+    service_id INTEGER,
+    PRIMARY KEY (rental_id, service_id),
+    FOREIGN KEY (rental_id) REFERENCES Rentals(rental_id),
+    FOREIGN KEY (service_id) REFERENCES Services(service_id)
+);
