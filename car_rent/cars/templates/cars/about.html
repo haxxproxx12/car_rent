@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>АрендаRzn</title>
   <link rel="stylesheet" href='{% static "css/global.css" %}' />
-  <link rel="stylesheet" href='{% static "css/index.css" %}' />
+  <link rel="stylesheet" href='{% static "css/about.css" %}' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -33,55 +33,28 @@
     </header>
 
     <section class="welcome-section">
-      <h1>Добро пожаловать!</h1>
-      <p>Аренда автомобилей в Рязани</p>
-      <p>У нас Вы всегда подберёте то, что Вам по вкусу!</p>
+      <h1>О нашей компании</h1>
+      <p>Мы супер!</p>
+      <p>Вот и всё, что нужно знать :)</p>
     </section>
 
-    <section class="car-selection">
-      <h2>Выберите срок аренды, марку или класс автомобиля</h2>
-      <div class="selection-options">
-        <div class="overlap">
-            <button class="select-button">Начало
-              <img class="img" src='{% static "img/icons/calendar.png" %}' />
-            </button>
-            <button class="select-button">Окончание
-              <img class="img" src='{% static "img/icons/calendar.png" %}' />
-            </button>
-            <button class="select-button">Марка
-              <img class="img" src='{% static "img/icons/down.png" %}' />
-            </button>
-            <button class="select-button">Класс
-              <img class="img" src='{% static "img/icons/down.png" %}' />
-            </button>
-            <button class="select-button">Показать</button>
-        </div>
-        <div class="car-cards">
-          {% for i in cars %}
-          <div class="car-card">
-            <img class="car-image" src="/static/{{ i.img }}" >
-            <div class="car-info">
-              <h3>{{ i.name }}</h3>
-              <p>{{ i.discription }}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <button id="load-more" class="load-more">Показать ещё</button>
+    <hr align="center" width="500" size="1" color="#336db8" />
+
+
+    <section class="info-section">
+      <h2>Часы работы</h2>
+      <div class="information">
+        <p>Пн - Пт: с 13:00 до 13:05</p>
+        <p>Сб - Вс: Выходной</p>
       </div>
     </section>
 
     <hr align="center" width="500" size="1" color="#336db8" />
 
-    <section class="services-section">
-      <h2>Наши услуги</h2>
-      <div class="services-list">
-        {% for i in services %}
-        <div class="service-item">
-          <h3>{{ i.name }}</h3>
-          <p>{{ i.discription }}</p>
-        </div>
-        {% endfor %}
+    <section class="map-section">
+      <h2>Как нас найти</h2>
+      <div class="map">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A44ed32bc9c4c5eb68b6f0b7bd463b96664059103925d120d955c603d6105eb2d&amp;width=100%25&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
       </div>
     </section>
 

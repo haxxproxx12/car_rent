@@ -40,3 +40,7 @@ def rent(request):
     sort['classes'].sort(key=itemgetter('name'))
     context = dict(sort)
     return render(request, 'cars/rent.html', context)
+
+def about(request):
+    
+    return render(request, 'cars/about.html')

@@ -1,0 +1,51 @@
+/* Стили для приветсвия */
+.welcome-section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.welcome-section p {
+  font-size: 1.25rem;
+}
+
+/* Стили для для info */
+.info-section {
+  text-align: center;
+  margin: 100px 0;
+  max-width: 1280px
+}
+
+.info-section h2 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+}
+
+
+
+/* Стили для карточек автомобилей */
+.information {
+  margin-top: 40px;
+}
+
+
+/* Стили для секции услуг */
+.map-section {
+  text-align: center;
+  margin: 50px 0;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.map-section h2 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+}
+
+.map {
+  margin: 0 auto;
+}
