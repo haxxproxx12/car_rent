@@ -32,12 +32,12 @@
             <button class="select-button">Показать</button>
         </div>
         <div class="car-cards">
-          {% for i in cars %}
+          {% for car in cars %}
           <div class="car-card">
-            <img class="car-image" src="/static/{{ i.img }}" >
+            <img class="car-image" src="media/{{ car.image }}" >
             <div class="car-info">
-              <h3>{{ i.name }}</h3>
-              <p>{{ i.discription }}</p>
+              <h3>{{ car.brand }} {{ car.model }}</h3>
+              <p>{{ car.discription }}</p>
             </div>
           </div>
           {% endfor %}

@@ -22,15 +22,15 @@
         </div>
 
         <div class="car-cards">
-            {% for i in cars %}
-            <div class="car-card">
-              <img class="car-image" src="/static/{{ i.img }}" >
-              <div class="car-info">
-                <h3>{{ i.name }}</h3>
-                <p>{{ i.discription }}</p>
-              </div>
+          {% for car in cars %}
+          <div class="car-card">
+            <img class="car-image" src="media/{{ car.image }}" >
+            <div class="car-info">
+              <h3>{{ car.brand }} {{ car.model }}</h3>
+              <p>{{ car.discription }}</p>
             </div>
-            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
 
         <button class="load-more">Показать ещё</button>
@@ -44,18 +44,18 @@
 
         <div class="overlap">
             <button class="filter-btn" data-brand="all">Все бренды</button>
-            {% for i in cars %}
-            <button class="filter-btn">{{ i.name }}</button>
+            {% for brand in brands %}
+            <button class="filter-btn">{{ brand.name }}</button>
             {% endfor %}
         </div>
 
         <div class="car-cards">
-            {% for i in cars %}
+            {% for car in cars %}
             <div class="car-card">
-              <img class="car-image" src="/static/{{ i.img }}" >
+              <img class="car-image" src="media/{{ car.image }}" >
               <div class="car-info">
-                <h3>{{ i.name }}</h3>
-                <p>{{ i.discription }}</p>
+                <h3>{{ car.model }}</h3>
+                <p>{{ car.discription }}</p>
               </div>
             </div>
             {% endfor %}

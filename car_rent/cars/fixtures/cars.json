@@ -1,0 +1,128 @@
+[
+    {
+        "model": "cars.cars",
+        "pk": 1,
+        "fields": {
+            "brand": 1,
+            "model": "A5",
+            "year": 2023,
+            "image": "car_img/Audi_A5-1.jpg",
+            "description": "",
+            "price": "7000.00",
+            "quantity": 1,
+            "carClass": 4
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 2,
+        "fields": {
+            "brand": 2,
+            "model": "X7",
+            "year": 2019,
+            "image": "car_img/BMW-X7-1.jpg",
+            "description": "",
+            "price": "17000.00",
+            "quantity": 1,
+            "carClass": 3
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 3,
+        "fields": {
+            "brand": 2,
+            "model": "530I XDrive",
+            "year": 2019,
+            "image": "car_img/BMW_530I_XDrive-1.jpg",
+            "description": "",
+            "price": "10000.00",
+            "quantity": 1,
+            "carClass": 4
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 4,
+        "fields": {
+            "brand": 3,
+            "model": "RIO",
+            "year": 2023,
+            "image": "car_img/KIA_Rio-1.jpg",
+            "description": "",
+            "price": "3000.00",
+            "quantity": 1,
+            "carClass": 1
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 5,
+        "fields": {
+            "brand": 3,
+            "model": "Seltos",
+            "year": 2021,
+            "image": "car_img/KIA_Seltos-1.jpg",
+            "description": "",
+            "price": "4500.00",
+            "quantity": 1,
+            "carClass": 3
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 6,
+        "fields": {
+            "brand": 4,
+            "model": "E220d AMG",
+            "year": 2020,
+            "image": "car_img/Mercedes-Benz_E-220_AMG-1.jpg",
+            "description": "",
+            "price": "11000.00",
+            "quantity": 1,
+            "carClass": 6
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 7,
+        "fields": {
+            "brand": 5,
+            "model": "Octavia",
+            "year": 2019,
+            "image": "car_img/Skoda_Octavia-1.jpg",
+            "description": "",
+            "price": "4000.00",
+            "quantity": 1,
+            "carClass": 2
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 8,
+        "fields": {
+            "brand": 6,
+            "model": "S90",
+            "year": 2020,
+            "image": "car_img/Volvo_S90-1.jpg",
+            "description": "",
+            "price": "6000.00",
+            "quantity": 1,
+            "carClass": 2
+        }
+    },
+    {
+        "model": "cars.cars",
+        "pk": 9,
+        "fields": {
+            "brand": 1,
+            "model": "TT 8S",
+            "year": 2014,
+            "image": "car_img/Audi_TT_8S-1.jpg",
+            "description": "",
+            "price": "12000.00",
+            "quantity": 1,
+            "carClass": 5
+        }
+    }
+]
