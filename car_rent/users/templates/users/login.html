@@ -1,0 +1,50 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block css %}
+  <link rel="stylesheet" href='{% static "css/auth.css" %}' />
+{% endblock %}
+
+{% block context %}
+
+<section class="auth-section">
+  <h1>Вход</h1>
+  <form class="auth-form" action="#" method="post">
+    <div class="form-group">
+      <label for="username">Имя пользователя</label>
+      <input type="text" id="username" name="username" placeholder="Введите имя пользователя" required>
+    </div>
+    <div class="form-group">
+      <div class="password">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+        <a href="#" class="password-control" onclick="return show_hide_password(this);">
+          <img class="img" id="img" src='{% static "img/icons/eye.png" %}' />
+        </a>
+      </div>
+
+    </div>
+    <button type="submit" class="auth-btn">Войти</button>
+    <p>Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+  </form>
+</section>
+
+<script>
+  function show_hide_password(target){
+	var input = document.getElementById('password');
+  var img = document.getElementById('img');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+    img.setAttribute('src', '{% static "img/icons/eye-hide.png" %}')
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+    img.setAttribute('src', '{% static "img/icons/eye.png" %}')
+	}
+	return false;
+}
+</script>
+
+{% endblock %}

@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Отладчик Python: Django",
+            "name": "Django server",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}\\car_rent\\manage.py",

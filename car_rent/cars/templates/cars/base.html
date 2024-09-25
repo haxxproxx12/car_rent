@@ -26,8 +26,8 @@
         <a href="{% url 'about' %}">О нас</a>
       </nav>
       <div class="auth">
-        <a href="#register" class="register-btn">Регистрация</a>
-        <a href="#login" class="login-btn">Вход</a>
+        <a href="{% url 'users:register' %}" class="register-btn">Регистрация</a>
+        <a href="{% url 'users:login' %}" class="login-btn">Вход</a>
       </div>
     </header>
 

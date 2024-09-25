@@ -1,4 +1,5 @@
-1. python -Xutf8 manage.py dumpdata что сохраняем -o название.json
+1. python -Xutf8 manage.py dumpdata приложение.класс модели -o название.json
+    python manage.py makemigrations
 2. python manage.py migrate
 3. python manage.py createsuperuser
 4. python manage.py loaddata что загружаем.json

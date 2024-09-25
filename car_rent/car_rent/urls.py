@@ -25,7 +25,8 @@ from cars.views import index, about
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('rent', include('cars.urls', namespace='cars')),
+    path('rent/', include('cars.urls', namespace='cars')),
+    path('users/', include('users.urls', namespace='users')),
     path('about', about, name='about'),
 ]
 

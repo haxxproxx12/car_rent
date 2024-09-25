@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from operator import itemgetter
 from cars.models import CarClasses, Cars, CarBrands
 
 
