@@ -9,25 +9,30 @@
 {% block context %}
 <section class="auth-section">
   <h1>Регистрация</h1>
-  <form class="auth-form" action="#" method="post">
+  <form class="auth-form" action="{% url 'users:register' %}" method="post">
+    {% csrf_token %}
     <div class="form-group">
-      <label for="username">Имя пользователя</label>
-      <input type="text" id="username" name="username" placeholder="Введите имя пользователя" required>
+      <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+      {{ form.username }}
+      <!-- <input type="text" id="username" name="username" placeholder="Введите имя пользователя" required> -->
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Введите email" required>
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      {{ form.email }}
+      <!-- <input type="email" id="email" name="email" placeholder="Введите email" required> -->
     </div>
     <div class="form-group password-group">
-      <label for="password">Пароль</label>
-      <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+      <label for="{{ form.password.id_for_label }}">Пароль</label>
+      {{ form.password }}
+      <!-- <input type="password" id="password" name="password" placeholder="Введите пароль" required> -->
       <span class="toggle-password">
         <img class="img" id="img" alt="Показать пароль" onclick="return show_hide_password(this);" src='{% static "img/icons/eye.png" %}' />
       </span>
     </div>
     <div class="form-group password-group">
-        <label for="password2">Подтвердите пароль</label>
-        <input type="password" id="password2" name="password2" placeholder="Подтверждение пароля" required>
+        <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+        {{ form.password2 }}
+        <!-- <input type="password" id="password2" name="password2" placeholder="Подтверждение пароля" required> -->
         <span class="toggle-password">
           <img class="img" id="img2" src='{% static "img/icons/eye.png" %}' />
         </span>
