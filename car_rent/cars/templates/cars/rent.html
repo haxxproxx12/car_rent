@@ -24,7 +24,7 @@
         <div class="car-cards">
           {% for car in cars %}
           <div class="car-card">
-            <img class="car-image" src="media/{{ car.image }}" >
+            <img class="car-image" src="/media/{{ car.image }}" >
             <div class="car-info">
               <h3>{{ car.brand }} {{ car.model }}</h3>
               <p>{{ car.discription }}</p>
@@ -52,7 +52,7 @@
         <div class="car-cards">
             {% for car in cars %}
             <div class="car-card">
-              <img class="car-image" src="media/{{ car.image }}" >
+              <img class="car-image" src="/media/{{ car.image }}" >
               <div class="car-info">
                 <h3>{{ car.model }}</h3>
                 <p>{{ car.discription }}</p>

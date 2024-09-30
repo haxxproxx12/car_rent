@@ -40,9 +40,10 @@
     border-radius: 5px;
   }
   .form-group .img {
-    width: 20px;
-    height: 20px;
     position: absolute;
+    right: 10px;
+    top: 38px; /* Выравниваем по высоте */
+    cursor: pointer;
   }
   
   .auth-btn {
@@ -66,7 +67,7 @@
   }
   
   .auth-form a {
-    color: #007BFF;
+    color: #336db8;
     text-decoration: none;
   }
   
@@ -74,3 +75,24 @@
     text-decoration: underline;
   }
   
+/* Для блока с паролем */
+.password-group {
+  position: relative;
+}
+
+.password-group input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 1px;
+  top: 6px;
+  cursor: pointer;
+}
+
+.toggle-password img {
+  width: 20px;
+  height: 20px;
+}

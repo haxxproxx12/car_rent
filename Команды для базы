@@ -1,5 +1,8 @@
-1. python -Xutf8 manage.py dumpdata приложение.класс модели -o название.json
+Сохранение данных базы
+    python -Xutf8 manage.py dumpdata приложение.класс_модели -o "название".json
+
+Загрузка базы данных
     python manage.py makemigrations
-2. python manage.py migrate
-3. python manage.py createsuperuser
-4. python manage.py loaddata что загружаем.json
+    python manage.py migrate
+    python manage.py createsuperuser
+    python manage.py loaddata "название".json
