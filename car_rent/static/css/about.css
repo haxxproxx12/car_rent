@@ -27,18 +27,18 @@
 
 
 
-/* Стили для карточек автомобилей */
 .information {
   margin-top: 40px;
 }
 
 
-/* Стили для секции услуг */
+
 .map-section {
   text-align: center;
   margin: 50px 0;
   width: 100%;
   max-width: 1280px;
+  margin-bottom: 15vh;
 }
 
 .map-section h2 {
