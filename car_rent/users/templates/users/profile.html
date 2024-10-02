@@ -1,63 +1,44 @@
-{% extends 'users/base.html' %}
+{% extends 'cars/base.html' %}
 {% load static %}
 
 
 {% block css %}
-  <link rel="stylesheet" href='{% static "css/auth.css" %}' />
+  <link rel="stylesheet" href='{% static "css/profile.css" %}' />
 {% endblock %}
 
 {% block context %}
-<header class="header">
-    <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
 
-    <nav class="nav-menu">
-      <a href="{% url 'cars:index' %}">Автопарк</a>
-      <a href="#services">Услуги</a>
-      <a href="#prices">Цены</a>
-      <a href="#conditions">Условия</a>
-      <a href="#contacts">Контакты</a>
-      <a href="{% url 'about' %}">О нас</a>
-    </nav>
-    <div class="auth">
-      {% if user.is_authenticated %}
-        <a href="{% url 'users:profile' %}" class="profile-btn">Профиль</a>
-        <a href="{% url 'users:logout' %}" class="logout-btn">Выход</a>
-      {% else %}
-        <a href="{% url 'users:register' %}" class="register-btn">Регистрация</a>
-        <a href="{% url 'users:login' %}" class="login-btn">Вход</a>
-      {% endif %}
+<section class="profile-section">
+  <div>
+    <h1>Профиль пользователя</h1>
+    <div>
+      <img src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/avatar.png' %} {% endif %}" alt="avatar">
     </div>
-</header>
-<div class="main">
-  <section class="profile-section">
-      <h1>Профиль пользователя</h1>
-      <p>Имя пользователя: {{ user.username }}</p>
-      <p>Email: {{ user.email }}</p>
-  </section>
-</div>
-<footer>
-    <div class="place">
-      <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
+    <form action="{% url 'users:profile' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
       <div>
-        <p class="info">370001, Печальная область, Тоскливый район, город Грусть, проспект Разочарования, дом 13</p>
-        <p class="info">Телефон: +7 (999) 999-99-99</p>
+        <label for="{{ form.first_name.id_for_label }}"> Имя </label>
+        {{ form.first_name}}
       </div>
-    </div>
-    <div class="social-icons">
-      <a href="https://vk.com" target="_blank" class="social-icon vk">
-        <img src={% static "img/icons/vkontakte.png" %} alt="VK">
-      </a>
-      <a href="https://facebook.com" target="_blank" class="social-icon facebook">
-        <img src={% static "img/icons/facebook.png" %} alt="Facebook">
-      </a>
-      <a href="https://instagram.com" target="_blank" class="social-icon instagram">
-        <img src={% static "img/icons/instagram.png" %} alt="Instagram">
-      </a>
-      <a href="https://twitter.com" target="_blank" class="social-icon twitter">
-        <img src={% static "img/icons/twitter.png" %} alt="Twitter">
-      </a>
-    </div>
-    <p class="copy">&copy; 2024 &ensp; ООО “Не ваше дело”. Все права защищены.</p>
-</footer>
+      <div>
+        <label for="{{ form.last_name.id_for_label }}"> Фамилия </label>
+        {{ form.last_name}}
+      </div>
+      <div>
+        <label for="{{ form.image.id_for_label }}"> Изображение </label>
+        {{ form.image}}
+      </div>
+      <div>
+        <label for="{{ form.username.id_for_label }}"> Имя пользователя </label>
+        {{ form.username}}
+      </div>
+      <div>
+        <label for="{{ form.email.id_for_label }}"> Адрес эл. почты </label>
+        {{ form.email}}
+      </div>
+      <button type="submit" class="auth-btn">Сохранить</button>
+    </form>
+  </div>
+</section>
 
 {% endblock %}
