@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth import logout
@@ -45,4 +45,4 @@ def user_profile(request):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return redirect('index')
