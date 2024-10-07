@@ -4,6 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth import logout
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.models import User
+from cars.models import Basket, RentalHistory
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -49,7 +50,9 @@ def user_profile(request):
             return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = UserProfileForm(instance=request.user)
-    context = {'form': form}
+    context = {'form': form,
+               'title': 'Профиль',
+               'basket': Basket.objects.all()}
     return render(request, 'users/profile.html', context)
 
 def user_logout(request):

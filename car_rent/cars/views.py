@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from cars.models import CarClasses, Cars, CarBrands
-
+from cars.models import Basket, RentalHistory
+from django.contrib.auth.decorators import login_required
 
 cars_services = {
         'cars': Cars.objects.order_by('brand').all(),
@@ -26,3 +27,32 @@ def rent(request):
 def about(request):
     
     return render(request, 'cars/about.html')
+
+@login_required
+def basket(request):
+    # Получаем текущие товары в корзине пользователя
+    basket_items = Basket.objects.filter(user=request.user)
+    
+    # Рассчитываем общую сумму аренды
+    total_price = sum([item.total_price() for item in basket_items])
+
+    if request.method == 'POST':
+        # Обработка отправки корзины в историю аренды
+        for item in basket_items:
+            # Создаем запись в истории аренды
+            RentalHistory.objects.create(
+                user=request.user,
+                car=item.car,
+                start_date=item.start_date,
+                end_date=item.end_date,
+                total_price=item.total_price()
+            )
+        # Очищаем корзину после оформления
+        basket_items.delete()
+        return redirect('rental_history')  # Перенаправление на страницу истории аренды
+
+    context = {
+        'cart_items': basket_items,
+        'total_price': total_price
+    }
+    return render(request, 'cart.html', context)

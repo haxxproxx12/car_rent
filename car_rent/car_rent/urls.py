@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from cars.views import index, about
+from cars.views import index, about, basket
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('rent/', include('cars.urls', namespace='cars')),
     path('users/', include('users.urls', namespace='users')),
     path('about', about, name='about'),
+    path('cart/', basket, name='cart')
 ]
 
 if settings.DEBUG:

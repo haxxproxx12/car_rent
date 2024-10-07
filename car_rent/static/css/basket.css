@@ -1,0 +1,51 @@
+.basket-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.basket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.basket-table th, .basket-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.basket-table th {
+    background-color: #f4f4f4;
+}
+
+.basket-car-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.car-info {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.basket-summary {
+    margin-top: 30px;
+}
+
+.checkout-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.checkout-btn:hover {
+    background-color: #0056b3;
+}
