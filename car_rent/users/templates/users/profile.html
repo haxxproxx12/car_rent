@@ -9,35 +9,43 @@
 {% block context %}
 
 <section class="profile-section">
-  <div>
-    <h1>Профиль пользователя</h1>
-    <div>
-      <img src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/avatar.png' %} {% endif %}" alt="avatar">
+  <div class="profile-sidebar">
+    <ul>
+        <li><a href="#personal-info" class="active">Личные данные</a></li>
+        <li><a href="#rental-history">История аренды</a></li>
+        <li><a href="#payment-info">Платежная информация</a></li>
+    </ul>
+  </div>
+
+  <div class="profile-content">
+    <div class="personal-info">
+        <h2>Личные данные</h2>
+        <img src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/avatar.png' %} {% endif %}" alt="Изображение пользователя" class="profile-image">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.first_name.id_for_label }}"> Имя </label>
+              {{ form.first_name }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.last_name.id_for_label }}"> Фамилия </label>
+              {{ form.last_name }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.image.id_for_label }}"> Изображение </label>
+              {{ form.image }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.username.id_for_label }}"> Имя пользователя </label>
+              {{ form.username }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}"> Адрес эл. почты </label>
+              {{ form.email }}
+            </div>
+            <button type="submit" class="auth-btn">Сохранить</button>
+        </form>
     </div>
-    <form action="{% url 'users:profile' %}" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div>
-        <label for="{{ form.first_name.id_for_label }}"> Имя </label>
-        {{ form.first_name}}
-      </div>
-      <div>
-        <label for="{{ form.last_name.id_for_label }}"> Фамилия </label>
-        {{ form.last_name}}
-      </div>
-      <div>
-        <label for="{{ form.image.id_for_label }}"> Изображение </label>
-        {{ form.image}}
-      </div>
-      <div>
-        <label for="{{ form.username.id_for_label }}"> Имя пользователя </label>
-        {{ form.username}}
-      </div>
-      <div>
-        <label for="{{ form.email.id_for_label }}"> Адрес эл. почты </label>
-        {{ form.email}}
-      </div>
-      <button type="submit" class="auth-btn">Сохранить</button>
-    </form>
   </div>
 </section>
 

@@ -39,3 +39,5 @@ class UserProfileForm(UserChangeForm):
     last_name = forms.CharField(required=False, widget=forms.TextInput())
 
     image = forms.ImageField(widget=forms.FileInput())
+
+    
