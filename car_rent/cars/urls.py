@@ -5,5 +5,4 @@ app_name = 'cars'
 
 urlpatterns = [
     path('', rent, name='index'),
-
 ]

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>АрендаRzn</title>
+  {% block title %} {% endblock %}
   <link rel="stylesheet" href='{% static "css/global.css" %}' />
   {% block css %} {% endblock %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +27,11 @@
       </nav>
       <div class="auth">
         {% if user.is_authenticated %}
+          <div class="cart">
+            <a href="{% url 'cart' %}" class="cart-btn">
+              <img class="cart-img" src={% static "img/icons/cart.png" %} alt="Корзина">
+            </a>
+          </div>
           <a href="{% url 'users:profile' %}" class="profile-btn">{{ user.username }}</a>
           <a href="{% url 'users:logout' %}" class="logout-btn">Выход</a>
         {% else %}

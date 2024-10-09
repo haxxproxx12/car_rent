@@ -41,8 +41,11 @@ class Basket(models.Model):
     quantity = models.IntegerField(default=1)
     added_at = models.DateTimeField(auto_now_add=True)
 
+    def total_days(self):
+        rental_days = (self.end_date - self.start_date).days
+        return rental_days
+
     def total_price(self):
-        """Функция для расчета общей стоимости аренды."""
         rental_days = (self.end_date - self.start_date).days
         return rental_days * self.car.price * self.quantity
 

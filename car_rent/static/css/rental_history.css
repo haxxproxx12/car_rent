@@ -1,0 +1,28 @@
+.history-section {
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+.history-items {
+    width: 70%;
+}
+
+.history-table {
+    text-align: center;
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+}
+
+
+.history-items {
+    margin: 20px 50px 50px;
+}
+
+.history-items h1 {
+    margin-bottom: 50px;
+}

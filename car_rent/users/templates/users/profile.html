@@ -1,6 +1,9 @@
 {% extends 'cars/base.html' %}
 {% load static %}
 
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
 
 {% block css %}
   <link rel="stylesheet" href='{% static "css/profile.css" %}' />
@@ -11,8 +14,8 @@
 <section class="profile-section">
   <div class="profile-sidebar">
     <ul>
-        <li><a href="#personal-info" class="active">Личные данные</a></li>
-        <li><a href="#rental-history">История аренды</a></li>
+        <li><a class="active" href="{% url 'users:profile' %}">Личные данные</a></li>
+        <li><a href="{% url 'users:rental_history' %}">История аренды</a></li>
         <li><a href="#payment-info">Платежная информация</a></li>
     </ul>
   </div>
@@ -43,7 +46,7 @@
               <label for="{{ form.email.id_for_label }}"> Адрес эл. почты </label>
               {{ form.email }}
             </div>
-            <button type="submit" class="auth-btn">Сохранить</button>
+            <button type="submit" class="btn">Сохранить</button>
         </form>
     </div>
   </div>

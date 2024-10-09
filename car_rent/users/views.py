@@ -24,7 +24,8 @@ def login(request):
             print(form.errors)
     else:
         form = UserLoginForm()
-    context = {'form': form}
+    context = {'form': form,
+               'title': 'Вход',}
     return render(request, 'users/login.html', context)
 
 def register(request):
@@ -38,7 +39,8 @@ def register(request):
             print(form.errors)
     else:
         form = UserRegistrationForm()
-    context = {'form': form}
+    context = {'form': form,
+               'title': 'Регистрация',}
     return render(request, 'users/register.html', context)
 
 @login_required
@@ -51,10 +53,16 @@ def user_profile(request):
     else:
         form = UserProfileForm(instance=request.user)
     context = {'form': form,
-               'title': 'Профиль',
-               'basket': Basket.objects.all()}
+               'title': 'Профиль',}
     return render(request, 'users/profile.html', context)
 
 def user_logout(request):
     logout(request)
     return redirect('index')
+
+@login_required
+def rental_history(request):
+    context = {'history_items': RentalHistory.objects.filter(user=request.user),
+               'title': 'История аренды',}
+    # history_items = RentalHistory.objects.filter(user=request.user)
+    return render(request, 'users/rental_history.html', context)

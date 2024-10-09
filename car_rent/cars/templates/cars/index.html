@@ -1,9 +1,12 @@
 {% extends 'cars/base.html' %}
 {% load static %}
 
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
 
 {% block css %}
-  <link rel="stylesheet" href='{% static "css/index.css" %}' />
+    <link rel="stylesheet" href='{% static "css/index.css" %}' />
 {% endblock %}
 
 {% block context %}
