@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.urls import reverse
 from cars.models import CarClasses, Cars, CarBrands
 from cars.models import Basket, RentalHistory
+from cars.forms import RentDate
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 
 # Create your views here.
@@ -38,26 +41,21 @@ def about(request):
 
 @login_required
 def cart(request):
-    # Получаем текущие товары в корзине пользователя
     cart_items = Basket.objects.filter(user=request.user)
-    
-    # Рассчитываем общую сумму аренды
     total_price = sum([item.total_price() for item in cart_items])
 
     if request.method == 'POST':
-        # Обработка отправки корзины в историю аренды
         for item in cart_items:
-            # Создаем запись в истории аренды
             RentalHistory.objects.create(
                 user=request.user,
                 car=item.car,
                 start_date=item.start_date,
                 end_date=item.end_date,
-                total_price=item.total_price()
+                total_price=item.total_price(),
+                quantity=item.quantity
             )
-        # Очищаем корзину после оформления
         cart_items.delete()
-        return redirect('users/rental_history')  # Перенаправление на страницу истории аренды
+        return redirect('users/rental_history')
 
     context = {
         'cart_items': cart_items,
@@ -65,3 +63,37 @@ def cart(request):
         'title': 'Корзина',
     }
     return render(request, 'cars/cart.html', context)
+
+@login_required
+def cart_add(request, car_id):
+    car = Cars.objects.get(id=car_id)
+    cart_items = Basket.objects.filter(user=request.user, car=car)
+    if not cart_items.exists():
+        Basket.objects.create(user=request.user, car=car, quantity=1, start_date=date.today, end_date=date.today)
+        return HttpResponseRedirect('index')
+    else:
+        cart = cart_items.first()
+        cart.quantity += 1
+        cart.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+def cart_delete(request, cart_id):
+    cart = Basket.objects.get(id=cart_id)
+    cart.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def page_car(request, car_id):
+    if request.method == 'POST':
+        form = RentDate(data=request.POST)
+        if form.is_valid():
+            cart_add(request, car_id)
+            return HttpResponseRedirect(reverse('users:rental_history'))
+    else:
+        # form = UserProfileForm(instance=request.user)
+        pass
+    car = Cars.objects.get(id=car_id)
+    context = {
+        'car': car,
+        'title': 'Корзина',
+    }
+    return render(request, 'cars/car.html', context)

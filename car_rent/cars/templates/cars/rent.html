@@ -28,7 +28,9 @@
         <div class="car-cards">
           {% for car in cars %}
           <div class="car-card">
-            <img class="car-image" src="/media/{{ car.image }}" >
+            <a href="{% url 'cars:page_car' car.id %}">
+              <img class="car-image" src="/media/{{ car.image }}" >
+            </a>
             <div class="car-info">
               <h3>{{ car.brand }} {{ car.model }}</h3>
               <p>{{ car.discription }}</p>
@@ -60,6 +62,7 @@
               <div class="car-info">
                 <h3>{{ car.model }}</h3>
                 <p>{{ car.discription }}</p>
+                <button>Добавить</button>
               </div>
             </div>
             {% endfor %}

@@ -64,5 +64,4 @@ def user_logout(request):
 def rental_history(request):
     context = {'history_items': RentalHistory.objects.filter(user=request.user),
                'title': 'История аренды',}
-    # history_items = RentalHistory.objects.filter(user=request.user)
     return render(request, 'users/rental_history.html', context)
