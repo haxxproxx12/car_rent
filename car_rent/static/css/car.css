@@ -1,0 +1,50 @@
+.car-details-section {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.car-details-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+}
+
+.car-image img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.car-info {
+    max-width: 600px;
+}
+
+.car-info h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.car-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.rental-form {
+    margin-top: 20px;
+}
+
+.auth-btn {
+    padding: 10px 20px;
+    background-color: #d9d9d9;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .auth-btn:hover {
+    color: #fff;
+    background-color: #336db8;
+  }

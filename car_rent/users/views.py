@@ -19,14 +19,17 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('users:profile'))
+            return HttpResponseRedirect(reverse('users:profile'))
         else:
             print(form.errors)
     else:
         form = UserLoginForm()
     context = {'form': form,
-               'title': 'Вход',}
+            'title': 'Вход',}
     return render(request, 'users/login.html', context)
+
+
+    
 
 def register(request):
     if request.method == 'POST':

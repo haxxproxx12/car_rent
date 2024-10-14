@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
 from cars.models import CarClasses, Cars, CarBrands
 from cars.models import Basket, RentalHistory
-from cars.forms import RentDate
+from cars.forms import BasketForm
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from datetime import date
 
 
 # Create your views here.
@@ -25,12 +25,28 @@ def index(request):
     return render(request, 'cars/index.html', context)
 
 def rent(request):
+    car_classes = CarClasses.objects.all()
+    car_brands = CarBrands.objects.all()
+    selected_class = request.GET.get('class')
+    selected_brand = request.GET.get('brand')
+
+    cars = Cars.objects.all()
+    
+    if selected_class and selected_class != 'all':
+        cars = cars.filter(carClass__name=selected_class)
+
+    if selected_brand and selected_brand != 'all':
+        cars = cars.filter(brand__name=selected_brand)
+
     context = {
-        'cars': Cars.objects.order_by('brand').all(),
-        'classes': CarClasses.objects.order_by('name').all(),
-        'brands': CarBrands.objects.order_by('name').all(),
-        'title': 'Автопарк',
-}
+    'car_classes': car_classes,
+    'car_brands': car_brands,
+    'cars': cars,
+    'selected_class': selected_class,
+    'selected_brand': selected_brand,
+    'title': 'Автопарк',
+    }
+
     return render(request, 'cars/rent.html', context)
 
 def about(request):
@@ -55,7 +71,7 @@ def cart(request):
                 quantity=item.quantity
             )
         cart_items.delete()
-        return redirect('users/rental_history')
+        return redirect('/users/rental_history')
 
     context = {
         'cart_items': cart_items,
@@ -64,36 +80,55 @@ def cart(request):
     }
     return render(request, 'cars/cart.html', context)
 
-@login_required
-def cart_add(request, car_id):
-    car = Cars.objects.get(id=car_id)
-    cart_items = Basket.objects.filter(user=request.user, car=car)
-    if not cart_items.exists():
-        Basket.objects.create(user=request.user, car=car, quantity=1, start_date=date.today, end_date=date.today)
-        return HttpResponseRedirect('index')
-    else:
-        cart = cart_items.first()
-        cart.quantity += 1
-        cart.save()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    
+
+
 def cart_delete(request, cart_id):
     cart = Basket.objects.get(id=cart_id)
     cart.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+# @login_required
 def page_car(request, car_id):
-    if request.method == 'POST':
-        form = RentDate(data=request.POST)
-        if form.is_valid():
-            cart_add(request, car_id)
-            return HttpResponseRedirect(reverse('users:rental_history'))
-    else:
-        # form = UserProfileForm(instance=request.user)
-        pass
     car = Cars.objects.get(id=car_id)
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('/users/login')
+        else:
+            form = BasketForm(data=request.POST, max_quantity=car.quantity)
+            if form.is_valid():
+                basket_item = form.save(commit=False)
+                basket_item.user = request.user
+                basket_item.car = car
+                basket_item.added_at = timezone.now()
+                if basket_item.quantity > car.quantity:
+                    form.add_error('quantity', 'Недостаточно автомобилей для аренды.')
+                else:
+                    car.quantity -= basket_item.quantity
+                    car.save()
+
+                    basket_item.save()
+                    return redirect('cart')
+    else:
+        form = BasketForm(max_quantity=car.quantity)
+
     context = {
         'car': car,
-        'title': 'Корзина',
+        'form': form,
     }
     return render(request, 'cars/car.html', context)
+
+@login_required
+def return_car(request, rental_id):
+    rental = RentalHistory.objects.get(user=request.user, id=rental_id)
+
+    if rental.is_returned == True:
+        return redirect('/users/rental_history')
+
+    car = rental.car
+    car.quantity += rental.quantity
+    car.save()
+
+    rental.is_returned = True
+    rental.save()
+
+    return redirect('/users/rental_history')

@@ -31,6 +31,8 @@
                         <th>Количество</th>
                         <th>Стоимость</th>
                         <th>Дата аренды</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,6 +43,20 @@
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.total_price }} руб</td>
                         <td>{{ item.rented_at }}</td>
+                        <td>
+                            {% if item.is_returned %}
+                                Возвращен
+                            {% else %}
+                                Не возвращен
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not item.is_returned %}
+                                <a href="{% url 'users:return_car' item.id %}" class="return-btn">Вернуть автомобиль</a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

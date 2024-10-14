@@ -60,6 +60,8 @@ class RentalHistory(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     rented_at = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=1)
+    is_returned = models.BooleanField(default=False)  # Добавляем статус возврата
+    
 
     def __str__(self):
         return f"История аренды {self.user.username} - {self.car.brand} {self.car.model}"

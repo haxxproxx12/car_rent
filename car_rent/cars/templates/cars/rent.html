@@ -10,64 +10,77 @@
 {% endblock %}
 
 {% block context %}
-    <section class="welcome-section">
-        <h1>Аренда автомобилей в Рязани</h1>
-      </section>
+<section class="welcome-section">
+    <h1>Аренда автомобилей в Рязани</h1>
+  </section>
 
-    <section class="filter-section">
-        <h2>Фильтр по классу автомобилей</h2>
+<section class="filter-section">
+    <h2>Фильтр по классу автомобилей</h2>
+    <div class="overlap">
+      <a href="?class=all{% if selected_brand %}&brand={{ selected_brand }}{% endif %}" class="filter-btn {% if not selected_class or selected_class == 'all' %}active{% endif %}">Все авто</a>
+      {% for car_class in car_classes %}
+          <a href="?class={{ car_class.name }}{% if selected_brand %}&brand={{ selected_brand }}{% endif %}" class="filter-btn {% if selected_class == car_class.name %}active{% endif %}">
+              {{ car_class.name }}
+          </a>
+      {% endfor %}
+    </div>
 
-        <div class="overlap">
-            <button class="filter-btn">Все классы</button>
-            {% for i in classes %}
-            <button class="filter-btn">{{ i.name }}</button>
+    <h2>Фильтр по марке автомобиля</h2>
+    <div class="overlap">
+            <a href="?brand=all{% if selected_class %}&class={{ selected_class }}{% endif %}" class="filter-btn {% if not selected_brand or selected_brand == 'all' %}active{% endif %}">Все марки</a>
+            {% for car_brand in car_brands %}
+                <a href="?brand={{ car_brand.name }}{% if selected_class %}&class={{ selected_class }}{% endif %}" class="filter-btn {% if selected_brand == car_brand.name %}active{% endif %}">
+                    {{ car_brand.name }}
+                </a>
             {% endfor %}
+    </div>
 
-        </div>
-
-        <div class="car-cards">
-          {% for car in cars %}
-          <div class="car-card">
+    <div class="car-cards">
+      {% if cars %}
+        {% for car in cars %}
+        <div class="car-card">
             <a href="{% url 'cars:page_car' car.id %}">
-              <img class="car-image" src="/media/{{ car.image }}" >
+              <img class="car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
             </a>
             <div class="car-info">
               <h3>{{ car.brand }} {{ car.model }}</h3>
-              <p>{{ car.discription }}</p>
+              <p>Год выпуска: {{ car.year }}</p>
+              <p>Цена: {{ car.price }} руб/день</p>
             </div>
-          </div>
-          {% endfor %}
         </div>
+        {% endfor %}
+      {% else %}
+          <p>Автомобили не найдены.</p>
+      {% endif %}
+    </div>
 
-        <button class="load-more">Показать ещё</button>
-    </section>
+    <button id="load-more" class="load-more">Показать ещё</button>
+</section>
 
-    <hr align="center" width="500" size="1" color="#336db8" />
+<script>
+  let visibleCars = 3;
+  const loadMoreButton = document.getElementById('load-more');
+  const carItems = document.querySelectorAll('.car-card');
 
-    <section class="filter-section">
-        <h2>Фильтр по бренду автомобилей</h2>
+  function showCars() {
+      carItems.forEach((car, index) => {
+          if (index < visibleCars) {
+              car.style.display = 'block';
+          } else {
+              car.style.display = 'none';
+          }
+      });
+      if (visibleCars >= carItems.length) {
+          loadMoreButton.style.display = 'none';
+      }
+  }
 
+  loadMoreButton.addEventListener('click', function() {
+      visibleCars += 3;
+      showCars();
+  });
 
-        <div class="overlap">
-            <button class="filter-btn" data-brand="all">Все бренды</button>
-            {% for brand in brands %}
-            <button class="filter-btn">{{ brand.name }}</button>
-            {% endfor %}
-        </div>
+  showCars();
+</script>
 
-        <div class="car-cards">
-            {% for car in cars %}
-            <div class="car-card">
-              <img class="car-image" src="/media/{{ car.image }}" >
-              <div class="car-info">
-                <h3>{{ car.model }}</h3>
-                <p>{{ car.discription }}</p>
-                <button>Добавить</button>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <button class="load-more">Показать ещё</button>
-      </section>
 {% endblock %}
