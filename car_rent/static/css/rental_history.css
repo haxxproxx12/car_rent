@@ -6,7 +6,7 @@
   }
 
 .history-items {
-    width: 70%;
+    width: 80%;
 }
 
 .history-table {
@@ -20,9 +20,22 @@ td {
 
 
 .history-items {
-    padding: 20px 50px 50px;
+    padding: 20px 30px 50px;
 }
 
 .history-items h1 {
     margin-bottom: 50px;
 }
+
+.return-btn {
+    padding: 8px 15px;
+    background-color: #d9d9d9;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.return-btn:hover {
+    color: #fff;
+    background-color: #336db8;
+  }
+  

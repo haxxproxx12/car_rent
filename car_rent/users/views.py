@@ -19,13 +19,24 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-            return HttpResponseRedirect(reverse('users:profile'))
+
+                 # Проверяем параметр next, чтобы перенаправить на исходную страницу
+                next_url = request.GET.get('next')
+                if next_url:
+                    return HttpResponseRedirect(next_url)
+                else:
+                    return HttpResponseRedirect(reverse('users:profile'))  # Перенаправление на профиль
+                # next_url = request.POST.get('next') or reverse('users:profile')
+                # return HttpResponseRedirect(next_url)
         else:
-            print(form.errors)
+            messages.error(request, 'Ошибка входа. Проверьте правильность данных.')
+
     else:
         form = UserLoginForm()
     context = {'form': form,
-            'title': 'Вход',}
+            'title': 'Вход',
+            'next': request.GET.get('next', ''),  # Передаем параметр next в контекст для формы
+            }
     return render(request, 'users/login.html', context)
 
 
@@ -35,16 +46,27 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, message='Регистрация прошла успешно')
-            return HttpResponseRedirect(reverse('users:login'))
+            user = form.save()
+            messages.success(request, 'Регистрация прошла успешно! Войдите в аккаунт.')
+            
+            # Перенаправление на страницу входа или на `next` параметр, если он был передан
+            next_url = request.GET.get('next', reverse('users:login'))
+            # return HttpResponseRedirect(next_url)
+            login_url = f"{reverse('users:login')}?next={next_url}"
+            return HttpResponseRedirect(login_url)
         else:
-            print(form.errors)
+            # Валидация не пройдена, добавим сообщение об ошибках
+            messages.error(request, 'Пожалуйста, исправьте ошибки в форме.')
     else:
         form = UserRegistrationForm()
-    context = {'form': form,
-               'title': 'Регистрация',}
+    
+    context = {
+        'form': form,
+        'title': 'Регистрация',
+    }
+    
     return render(request, 'users/register.html', context)
+
 
 @login_required
 def user_profile(request):
@@ -59,9 +81,11 @@ def user_profile(request):
                'title': 'Профиль',}
     return render(request, 'users/profile.html', context)
 
+
 def user_logout(request):
     logout(request)
     return redirect('index')
+
 
 @login_required
 def rental_history(request):

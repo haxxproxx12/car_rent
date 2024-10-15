@@ -23,6 +23,7 @@
                         <th>Дней аренды</th>
                         <th>Количество</th>
                         <th>Итого</th>
+                        <th>Действие</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +38,7 @@
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.total_price }} руб</td>
                         <td>
-                            <a href="{% url 'cars:cart_delete' item.id %}">удалить</a>
+                            <a href="{% url 'cars:cart_delete' item.id %}" class="login-btn">удалить</a>
                         </td>
                     </tr>
                     {% endfor %}

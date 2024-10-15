@@ -24,7 +24,7 @@
   </div>
   {% endif %}
   <h1>Вход</h1>
-  <form class="auth-form" action="{% url 'users:login' %}" method="post">
+  <form class="auth-form" action="{% url 'users:login' %}?next={{ next }}" method="post">
     {% csrf_token %}
     <div class="form-group">
       <label for="{{ form.username.id_for_label}}">Имя пользователя</label>
@@ -38,12 +38,13 @@
       </span>
     </div>
     <button type="submit" class="auth-btn">Войти</button>
-    <p>Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a></p>
+    <p>Нет аккаунта? <a href="{% url 'users:register' %}?next={{ next }}">Зарегистрироваться</a></p>
   </form>
 </section>
 
 <script>
-	var input = document.getElementById('password');
+	{% comment %} var input = document.getElementById('password'); {% endcomment %}
+  var input = document.querySelector('input[name="password"]');
   var img = document.getElementById('img');
 
   img.addEventListener('click', () => {

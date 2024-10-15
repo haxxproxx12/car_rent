@@ -11,71 +11,73 @@
 
 {% block context %}
 <section class="auth-section">
-  {% if form.errors %}
-  <div class="{% if error %} error {% else %} message {% endif %}">
-    {{ form.errors }}
-  </div>
+  <!-- Отображение сообщений -->
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
   {% endif %}
+
+  <!-- Форма регистрации -->
   <h1>Регистрация</h1>
-  <form class="auth-form" action="{% url 'users:register' %}" method="post">
+  <form class="auth-form" action="{% url 'users:register' %}?next={{ request.GET.next }}" method="post">
     {% csrf_token %}
     <div class="form-group">
       <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
       {{ form.username }}
-      <!-- <input type="text" id="username" name="username" placeholder="Введите имя пользователя" required> -->
     </div>
     <div class="form-group">
       <label for="{{ form.email.id_for_label }}">Email</label>
       {{ form.email }}
-      <!-- <input type="email" id="email" name="email" placeholder="Введите email" required> -->
     </div>
     <div class="form-group password-group">
       <label for="{{ form.password1.id_for_label }}">Пароль</label>
       {{ form.password1 }}
-      <!-- <input type="password" id="password" name="password" placeholder="Введите пароль" required> -->
       <span class="toggle-password">
-        <img class="img" id="img" alt="Показать пароль" onclick="return show_hide_password(this);" src='{% static "img/icons/eye.png" %}' />
+        <img class="img" id="img1" alt="Показать пароль" src='{% static "img/icons/eye.png" %}' />
       </span>
     </div>
     <div class="form-group password-group">
         <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
         {{ form.password2 }}
-        <!-- <input type="password" id="password2" name="password2" placeholder="Подтверждение пароля" required> -->
         <span class="toggle-password">
-          <img class="img" id="img2" src='{% static "img/icons/eye.png" %}' />
+          <img class="img" id="img2" alt="Скрыть пароль" src='{% static "img/icons/eye.png" %}' />
         </span>
     </div>
     <button type="submit" class="auth-btn">Зарегистрироваться</button>
-    <p>Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a></p>
+    <p>Уже есть аккаунт? <a href={% url 'users:login' %}?next={{ request.GET.next }}>Войти</a></p>
   </form>
 </section>
 
 <script>
+  // JS для показа/скрытия пароля (аналогично вашему коду)
+  var input1 = document.querySelector('input[name="password1"]');
+  var img1 = document.getElementById('img1');
 
-	var input = document.getElementById('password');
-  var img = document.getElementById('img');
-  var input2 = document.getElementById('password2');
+  var input2 = document.querySelector('input[name="password2"]');
   var img2 = document.getElementById('img2');
 
-  img.addEventListener('click', () => {
-    if (input.getAttribute('type') === 'password') {
-      input.setAttribute('type', 'text');
-      img.setAttribute('src', '{% static "img/icons/eye-hide.png" %}')
+  img1.addEventListener('click', () => {
+    if (input1.getAttribute('type') === 'password') {
+      input1.setAttribute('type', 'text');
+      img1.setAttribute('src', '{% static "img/icons/eye-hide.png" %}');
     } else {
-      input.setAttribute('type', 'password');
-      img.setAttribute('src', '{% static "img/icons/eye.png" %}')
+      input1.setAttribute('type', 'password');
+      img1.setAttribute('src', '{% static "img/icons/eye.png" %}');
     }
-  })
+  });
 
   img2.addEventListener('click', () => {
     if (input2.getAttribute('type') === 'password') {
       input2.setAttribute('type', 'text');
-      img2.setAttribute('src', '{% static "img/icons/eye-hide.png" %}')
+      img2.setAttribute('src', '{% static "img/icons/eye-hide.png" %}');
     } else {
       input2.setAttribute('type', 'password');
-      img2.setAttribute('src', '{% static "img/icons/eye.png" %}')
+      img2.setAttribute('src', '{% static "img/icons/eye.png" %}');
     }
-  })
+  });
 </script>
 
 {% endblock %}

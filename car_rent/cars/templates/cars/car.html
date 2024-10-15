@@ -21,6 +21,7 @@
                 <p>{{ car.description }}</p>
                 <p><strong>Год выпуска:</strong> {{ car.year }}</p>
                 <p><strong>Цена за день:</strong> {{ car.price }} руб</p>
+                <p><strong>Доступно автомобилей:</strong> {{ car.quantity }}</p>
 
                 <!-- Форма для выбора аренды -->
                 <form method="POST" class="rental-form">
@@ -30,8 +31,12 @@
                     <label for="{{ form.end_date.id_for_label}}">Дата окончания</label>
                     {{ form.end_date }}
                     <label for="{{ form.quantity.id_for_label}}">Количество</label>
-                    {{ form.quantity }}
-                    <button type="submit" class="auth-btn">Забронировать</button>
+                    {% comment %} {{ form.quantity }} {% endcomment %}
+                    <input type="number" name="quantity" id="quantity"
+                           value="{% if car.quantity > 0 %}1{% else %}0{% endif %}"
+                           min="1" max="{{ car.quantity }}"
+                           {% if car.quantity == 0 %}disabled{% endif %}>
+                    <button type="submit" class="auth-btn" {% if car.quantity == 0 %} disabled {% endif %}>Забронировать</button>
                 </form>
             </div>
         </div>

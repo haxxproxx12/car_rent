@@ -84,6 +84,9 @@ def cart(request):
 
 def cart_delete(request, cart_id):
     cart = Basket.objects.get(id=cart_id)
+    car = cart.car
+    car.quantity += cart.quantity
+    car.save()
     cart.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -91,25 +94,32 @@ def cart_delete(request, cart_id):
 def page_car(request, car_id):
     car = Cars.objects.get(id=car_id)
     if request.method == 'POST':
-        if not request.user.is_authenticated:
-            return redirect('/users/login')
-        else:
-            form = BasketForm(data=request.POST, max_quantity=car.quantity)
-            if form.is_valid():
-                basket_item = form.save(commit=False)
-                basket_item.user = request.user
-                basket_item.car = car
-                basket_item.added_at = timezone.now()
-                if basket_item.quantity > car.quantity:
-                    form.add_error('quantity', 'Недостаточно автомобилей для аренды.')
-                else:
-                    car.quantity -= basket_item.quantity
-                    car.save()
+        form = BasketForm(data=request.POST, max_quantity=car.quantity)
+        if form.is_valid():
+            if not request.user.is_authenticated:
+                request.session['car_form_data'] = request.POST
+                request.session['car_id'] = car_id
+                return redirect(f'/users/login?next={request.path}')
 
-                    basket_item.save()
-                    return redirect('cart')
+
+            basket_item = form.save(commit=False)
+            basket_item.user = request.user
+            basket_item.car = car
+            basket_item.added_at = timezone.now()
+            if basket_item.quantity > car.quantity:
+                form.add_error('quantity', 'Недостаточно автомобилей для аренды.')
+            else:
+                car.quantity -= basket_item.quantity
+                car.save()
+
+                basket_item.save()
+                return redirect('cart')
     else:
-        form = BasketForm(max_quantity=car.quantity)
+        if 'car_form_data' in request.session and 'car_id' in request.session and request.session['car_id'] == car_id:
+            form = BasketForm(request.session['car_form_data'], max_quantity=car.quantity)
+            del request.session['car_form_data']  # Удаляем данные формы после использования
+        else:
+            form = BasketForm(max_quantity=car.quantity)
 
     context = {
         'car': car,

@@ -39,7 +39,7 @@
                     {% for item in history_items %}
                     <tr>
                         <td>{{ item.car.brand }} {{ item.car.model }}</td>
-                        <td>{{ item.start_date }} - {{ item.end_date }}</td>
+                        <td>{{ item.start_date }} <br> {{ item.end_date }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.total_price }} руб</td>
                         <td>{{ item.rented_at }}</td>
@@ -52,7 +52,7 @@
                         </td>
                         <td>
                             {% if not item.is_returned %}
-                                <a href="{% url 'users:return_car' item.id %}" class="return-btn">Вернуть автомобиль</a>
+                                <a href="{% url 'users:return_car' item.id %}" class="return-btn">Возврат</a>
                             {% else %}
                                 -
                             {% endif %}
