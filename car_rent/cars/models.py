@@ -42,12 +42,22 @@ class Basket(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
 
     def total_days(self):
-        rental_days = (self.end_date - self.start_date).days
+        rental_days = int((self.end_date - self.start_date).days)
+        print('\n\n\n\n ДНИ!!!', rental_days, 'тип - ', type(rental_days),'\n\n\n')
+        print('\n\n\n\n ДНИ!!!', self.end_date, 'тип - ', type(self.end_date),'\n\n\n')
+        print('\n\n\n\n ДНИ!!!', self.start_date, 'тип - ', type(self.start_date),'\n\n\n')
         return rental_days
 
     def total_price(self):
-        rental_days = (self.end_date - self.start_date).days
-        return rental_days * self.car.price * self.quantity
+        return self.total_days() * self.car.price * self.quantity
+    
+    @property
+    def total(self):
+        # rental_days = (self.end_date - self.start_date).days
+        # print(type((self.end_date - self.start_date).days), (self.end_date - self.start_date).days)
+        # print('\n\n\n ТИП!!!', type(self.car.price), type(self.car.quantity))
+        s = self.total_days() * int(self.car.price) * self.quantity
+        return int(s)
 
     def __str__(self):
         return f"Корзина пользователя {self.user.username}"
