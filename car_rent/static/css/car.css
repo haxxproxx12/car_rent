@@ -20,6 +20,8 @@
 
 .car-info {
     max-width: 600px;
+    display: flex;
+    align-items: center;
 }
 
 .car-info h1 {
@@ -32,11 +34,16 @@
     margin-bottom: 10px;
 }
 
+.info {
+    padding: 50px;
+}
+
 .rental-form {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 50px;
 }
 
 .auth-btn {
@@ -73,16 +80,17 @@ pointer-events: none;
 .slide {
     min-width: 100%;
     box-sizing: border-box;
+    max-height: 700px;
 }
 .slide img {
-    width: 100%;
-    object-fit: contain;
+    width: auto;
+    height: 100%;
 }
 .navigation {
     display: flex;
     justify-content: space-between;
     position: relative;
-    top: -300px;
+    top: -350px;
 }
 .prev, .next {
     cursor: pointer;
