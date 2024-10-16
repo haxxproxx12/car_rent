@@ -2,6 +2,8 @@
     padding: 50px 20px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .car-details-container {
@@ -32,6 +34,9 @@
 
 .rental-form {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .auth-btn {
@@ -42,13 +47,48 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-  }
-  
-  .auth-btn:hover {
-    color: #fff;
-    background-color: #336db8;
-  }
+}
 
-  .auth-btn:disabled {
-    pointer-events: none;
-  }
+.auth-btn:hover {
+color: #fff;
+background-color: #336db8;
+}
+
+.auth-btn:disabled {
+pointer-events: none;
+}
+
+/* slider */
+.slider {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    flex-direction: column;
+}
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    max-height: 700px;
+}
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+.slide img {
+    width: 100%;
+    object-fit: contain;
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -300px;
+}
+.prev, .next {
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 18px;
+}

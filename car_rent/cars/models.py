@@ -65,3 +65,11 @@ class RentalHistory(models.Model):
 
     def __str__(self):
         return f"История аренды {self.user.username} - {self.car.brand} {self.car.model}"
+
+class CarImage(models.Model):
+    car = models.ForeignKey('Cars', on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='car_img')
+
+    def __str__(self):
+        image_name = self.image.name.rsplit('/')
+        return f'Изображение "{image_name[1]}" для {self.car.model}'

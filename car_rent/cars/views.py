@@ -93,6 +93,8 @@ def cart_delete(request, cart_id):
 # @login_required
 def page_car(request, car_id):
     car = Cars.objects.get(id=car_id)
+    images = car.images.all()
+    print('это картинки - ', images)
     if request.method == 'POST':
         form = BasketForm(data=request.POST, max_quantity=car.quantity)
         if form.is_valid():
@@ -124,6 +126,7 @@ def page_car(request, car_id):
     context = {
         'car': car,
         'form': form,
+        'car_images': images,
     }
     return render(request, 'cars/car.html', context)
 
@@ -142,3 +145,4 @@ def return_car(request, rental_id):
     rental.save()
 
     return redirect('/users/rental_history')
+
