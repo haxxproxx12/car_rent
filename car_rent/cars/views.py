@@ -5,6 +5,7 @@ from cars.models import Basket, RentalHistory
 from cars.forms import BasketForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+import datetime
 
 
 # Create your views here.
@@ -62,11 +63,15 @@ def cart(request):
 
     if request.method == 'POST':
         for item in cart_items:
+            if item.start_date == item.end_date:
+                end_date = item.end_date + datetime.timedelta(days=1)
+            else:
+                end_date = item.end_date
             RentalHistory.objects.create(
                 user=request.user,
                 car=item.car,
                 start_date=item.start_date,
-                end_date=item.end_date,
+                end_date=end_date,
                 total_price=item.total_price(),
                 quantity=item.quantity
             )
