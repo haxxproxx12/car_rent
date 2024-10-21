@@ -21,7 +21,7 @@ class UserRegistrationForm(UserCreationForm):
 
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'type': 'password', 'id': 'password', 'placeholder': 'Введите пароль'}))
 
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'type': 'password', 'id': 'password2', 'placeholder': 'Подтвердите пароль'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'type': 'password', 'id': 'password2', 'placeholder': 'Подтвердите пароль'}),)
 
     email = forms.CharField(widget=forms.EmailInput(attrs={'id': 'email', 'placeholder': 'Введите email'}))
 

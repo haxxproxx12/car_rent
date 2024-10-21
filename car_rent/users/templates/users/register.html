@@ -11,14 +11,14 @@
 
 {% block context %}
 <section class="auth-section">
-  <!-- Отображение сообщений -->
+  {% comment %} <!-- Отображение сообщений -->
   {% if messages %}
     <div class="messages">
       {% for message in messages %}
         <div class="alert {{ message.tags }}">{{ message }}</div>
       {% endfor %}
     </div>
-  {% endif %}
+  {% endif %} {% endcomment %}
 
   <!-- Форма регистрации -->
   <h1>Регистрация</h1>

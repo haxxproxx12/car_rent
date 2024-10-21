@@ -96,13 +96,3 @@
   width: 20px;
   height: 20px; 
 }
-
-.message {
-  background-color: green;
-}
-
-.error {
-  width: 200px;
-  height: 200px;
-  background-color: red;
-}

@@ -6,6 +6,7 @@ from cars.forms import BasketForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.contrib import messages
 
 
 # Create your views here.
@@ -73,7 +74,6 @@ def cart(request):
                 start_date=item.start_date,
                 end_date=end_date,
                 total_price=item.total_price(),
-                quantity=item.quantity
             )
         cart_items.delete()
         return redirect('/users/rental_history')
@@ -90,7 +90,7 @@ def cart(request):
 def cart_delete(request, cart_id):
     cart = Basket.objects.get(id=cart_id)
     car = cart.car
-    car.quantity += cart.quantity
+    car.is_rented = False
     car.save()
     cart.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -99,9 +99,8 @@ def cart_delete(request, cart_id):
 def page_car(request, car_id):
     car = Cars.objects.get(id=car_id)
     images = car.images.all()
-    print('это картинки - ', images)
     if request.method == 'POST':
-        form = BasketForm(data=request.POST, max_quantity=car.quantity)
+        form = BasketForm(data=request.POST)
         if form.is_valid():
             if not request.user.is_authenticated:
                 request.session['car_form_data'] = request.POST
@@ -113,20 +112,19 @@ def page_car(request, car_id):
             basket_item.user = request.user
             basket_item.car = car
             basket_item.added_at = timezone.now()
-            if basket_item.quantity > car.quantity:
-                form.add_error('quantity', 'Недостаточно автомобилей для аренды.')
+            basket_item.save()
+            if car.is_rented == True:
+                form.add_error('is_rented', 'Автомобиль уже забронирован.')
             else:
-                car.quantity -= basket_item.quantity
+                car.is_rented = True
                 car.save()
-
-                basket_item.save()
                 return redirect('cart')
     else:
         if 'car_form_data' in request.session and 'car_id' in request.session and request.session['car_id'] == car_id:
-            form = BasketForm(request.session['car_form_data'], max_quantity=car.quantity)
-            del request.session['car_form_data']  # Удаляем данные формы после использования
+            form = BasketForm(request.session['car_form_data'])
+            del request.session['car_form_data']
         else:
-            form = BasketForm(max_quantity=car.quantity)
+            form = BasketForm()
 
     context = {
         'car': car,
@@ -138,16 +136,19 @@ def page_car(request, car_id):
 @login_required
 def return_car(request, rental_id):
     rental = RentalHistory.objects.get(user=request.user, id=rental_id)
-
+    print(rental)
     if rental.is_returned == True:
         return redirect('/users/rental_history')
-
-    car = rental.car
-    car.quantity += rental.quantity
-    car.save()
-
-    rental.is_returned = True
-    rental.save()
+    
+    car = Cars.objects.get(id=rental.car.id)
+    print(car.is_rented)
+    if car.is_rented == False:
+        messages.error(request, 'Авто не забронировано')
+    else:
+        car.is_rented = False
+        car.save()
+        rental.is_returned = True
+        rental.save()
 
     return redirect('/users/rental_history')
 

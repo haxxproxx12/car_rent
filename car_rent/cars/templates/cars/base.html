@@ -42,6 +42,39 @@
     </header>
 
     <div class="main">
+      <div id="popup-message" class="popup hidden">
+        {% if messages %}
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const popup = document.getElementById("popup-message");
+            if (popup) {
+                popup.classList.add("show");
+        
+                // Автоматическое скрытие popup через 3 секунды
+                {% comment %} setTimeout(function () {
+                    closePopup();
+                }, 3000); {% endcomment %}
+            }
+          });
+        
+          function closePopup() {
+            const popup = document.getElementById("popup-message");
+            if (popup) {
+                popup.classList.remove("show");
+                popup.classList.add("hidden");
+            }
+          }
+        </script>
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        <span>{{ message }}</span>
+                        <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия -->
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+      </div>
       {% block context %} {% endblock %}
     </div>
     
@@ -70,5 +103,6 @@
       <p class="copy">&copy; 2024 &ensp; ООО “Не ваше дело”. Все права защищены.</p>
     </footer>
   </div>
+
 </body>
 </html>

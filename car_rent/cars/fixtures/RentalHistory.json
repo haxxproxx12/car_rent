@@ -1,0 +1,41 @@
+[
+  {
+    "model": "cars.rentalhistory",
+    "pk": 6,
+    "fields": {
+      "user": 10,
+      "car": 6,
+      "start_date": "2024-10-15",
+      "end_date": "2024-10-20",
+      "total_price": "55000.00",
+      "rented_at": "2024-10-15T08:20:37.417Z",
+      "is_returned": false
+    }
+  },
+  {
+    "model": "cars.rentalhistory",
+    "pk": 7,
+    "fields": {
+      "user": 10,
+      "car": 2,
+      "start_date": "2024-10-15",
+      "end_date": "2024-10-18",
+      "total_price": "51000.00",
+      "rented_at": "2024-10-15T10:26:06.806Z",
+      "is_returned": false
+    }
+  },
+  {
+    "model": "cars.rentalhistory",
+    "pk": 8,
+    "fields": {
+      "user": 10,
+      "car": 9,
+      "start_date": "2024-10-17",
+      "end_date": "2024-10-18",
+      "total_price": "12000.00",
+      "rented_at": "2024-10-17T05:01:20.982Z",
+      "is_returned": false
+    }
+  }
+]

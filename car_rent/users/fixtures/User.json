@@ -1,0 +1,65 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$KRQjkBeWH2jKzruFqFG8tO$0SYY4EztpppOHcukDw/PU8dulXR6PBkB+XiC21/o7Ws=",
+      "last_login": "2024-10-17T04:59:54.886Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-25T16:43:06Z",
+      "image": "",
+      "phone_number": "",
+      "documents": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$wgKy2kQAvHF3K3wHWygUIz$wBjUbHtYevXRJLHyPp6CZB23AZa0AGXHdewyXcK19OE=",
+      "last_login": "2024-10-21T05:20:07.087Z",
+      "is_superuser": false,
+      "username": "qwerty",
+      "first_name": "Илья",
+      "last_name": "Нафиков",
+      "email": "qwerty@asd.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-02T18:10:33.953Z",
+      "image": "users_images/2023-11-03_08_45_56-Window.jpg",
+      "phone_number": "",
+      "documents": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 19,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$fqBKCRWFtnDyOVSUDsHPD3$DuOR5WoAS4vFts3tw/eL5IsgLSO/yVUX9aIG/Q4p/J8=",
+      "last_login": "2024-10-15T07:09:13.661Z",
+      "is_superuser": false,
+      "username": "user",
+      "first_name": "",
+      "last_name": "",
+      "email": "user@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-10-15T07:09:03.937Z",
+      "image": "",
+      "phone_number": "",
+      "documents": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

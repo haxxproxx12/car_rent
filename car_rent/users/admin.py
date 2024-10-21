@@ -11,4 +11,3 @@ from cars.admin import BasketAdminInline
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     inlines = (BasketAdminInline,)
-    # list_display = ('car', 'quantity', 'start_date', 'end_date', 'total_price',)

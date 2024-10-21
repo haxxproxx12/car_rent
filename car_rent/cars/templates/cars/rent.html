@@ -38,6 +38,7 @@
     <div class="car-cards">
       {% if cars %}
         {% for car in cars %}
+        {% if car.is_rented == False %}
         <div class="car-card">
             <a href="{% url 'cars:page_car' car.id %}">
               <img class="car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
@@ -48,6 +49,7 @@
               <p>Цена: {{ car.price }} руб/день</p>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
       {% else %}
           <p>Автомобили не найдены.</p>

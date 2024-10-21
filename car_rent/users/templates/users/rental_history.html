@@ -28,7 +28,6 @@
                     <tr>
                         <th>Автомобиль</th>
                         <th>Срок аренды</th>
-                        <th>Количество</th>
                         <th>Стоимость</th>
                         <th>Дата аренды</th>
                         <th>Статус</th>
@@ -40,7 +39,6 @@
                     <tr>
                         <td>{{ item.car.brand }} {{ item.car.model }}</td>
                         <td>{{ item.start_date }} <br> {{ item.end_date }}</td>
-                        <td>{{ item.quantity }}</td>
                         <td>{{ item.total_price }} руб</td>
                         <td>{{ item.rented_at }}</td>
                         <td>
@@ -66,4 +64,5 @@
         {% endif %}
     </div>
 </section>
+
 {% endblock %}

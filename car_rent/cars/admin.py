@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import QuerySet
 from cars.models import CarClasses, Cars, CarBrands, Basket, RentalHistory, CarImage
 
 # Register your models here.
@@ -16,15 +17,20 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(Cars)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('brand', 'model', 'year', 'price', 'quantity', 'carClass',)
+    list_display = ('brand', 'model', 'year', 'price', 'is_rented', 'carClass',)
 
 @admin.register(Basket)
 class BasketAdmin(admin.ModelAdmin):
-    list_display = ('user', 'car', 'start_date', 'end_date', 'quantity',)
+    list_display = ('user', 'car', 'start_date', 'end_date',)
 
 @admin.register(RentalHistory)
 class RentalHistoryAdmin(admin.ModelAdmin):
-    list_display = ('user', 'car', 'start_date', 'end_date', 'total_price', 'rented_at', 'quantity', 'is_returned',)
+    list_display = ('user', 'car', 'start_date', 'end_date', 'total_price', 'rented_at', 'is_returned',)
+    actions = ['set_return']
+
+    @admin.action(description='Установить статус "is_returned"')
+    def set_return(self, request, qs: QuerySet):
+        qs.update(is_returned=True)
 
 @admin.register(CarImage)
 class CarImageAdmin(admin.ModelAdmin):
@@ -32,7 +38,6 @@ class CarImageAdmin(admin.ModelAdmin):
 
 class BasketAdminInline(admin.TabularInline):
     model = Basket
-    fields = ('car', 'quantity', 'start_date', 'end_date', 'total',)
+    fields = ('car', 'start_date', 'end_date', 'total',)
     extra = 0
-    # list_display = ('car', 'quantity', 'start_date', 'end_date', 'total_price',)
     readonly_fields = ('added_at', 'total',)

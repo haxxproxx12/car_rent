@@ -27,8 +27,8 @@ class Cars(models.Model):
     image = models.ImageField(upload_to='car_img', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=0)
     carClass = models.ForeignKey(CarClasses, on_delete=models.PROTECT)
+    is_rented = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.model
@@ -38,7 +38,6 @@ class Basket(models.Model):
     car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today)
-    quantity = models.IntegerField(default=1)
     added_at = models.DateTimeField(auto_now_add=True)
 
     def total_days(self):
@@ -47,11 +46,11 @@ class Basket(models.Model):
         return (self.end_date - self.start_date).days
 
     def total_price(self):
-        return self.total_days() * self.car.price * self.quantity
+        return self.total_days() * self.car.price
     
     @property
     def total(self):
-        return self.total_days() * int(self.car.price) * self.quantity
+        return self.total_days() * int(self.car.price)
 
     def __str__(self):
         return f"Корзина пользователя {self.user.username}"
@@ -63,8 +62,7 @@ class RentalHistory(models.Model):
     end_date = models.DateField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     rented_at = models.DateTimeField(auto_now_add=True)
-    quantity = models.IntegerField(default=1)
-    is_returned = models.BooleanField(default=False)  # Добавляем статус возврата
+    is_returned = models.BooleanField(default=False)
     
 
     def __str__(self):
