@@ -7,11 +7,13 @@
 body.light-theme {
   background-color: #f5f5f5;
   color: #333;
+  transition: background-color 1s ease;
 }
 
 body.dark-theme {
   background-color: #333;
   color: #f5f5f5;
+  transition: background-color 1s ease;
 }
 
 body, html {
@@ -44,9 +46,11 @@ body, html {
 
 .header.light-theme {
   background-color: #ffffff;
+  transition: background-color 1s ease;
 }
 .header.dark-theme {
   background-color: #999999;
+  transition: background-color 1s ease;
 }
 
 
@@ -168,10 +172,14 @@ body, html {
 
 .footer.light-theme {
   background-color: #ffffff;
+  transition: background-color 1s ease;
+
 }
 
 .footer.dark-theme {
   background-color: #999999;
+  transition: background-color 1s ease;
+
 }
 
 .footer.light-theme p {
@@ -259,28 +267,28 @@ body, html {
 }
 
 /* Сообщения об успехе */
-.alert.success {
+/* .alert.success {
   background-color: #d4edda;
   color: #155724;
-}
+} */
 
 /* Сообщения об ошибке */
-.alert.error {
+/* .alert.error {
   background-color: #f8d7da;
   color: #721c24;
-}
+} */
 
 /* Сообщения с предупреждениями */
-.alert.warning {
+/* .alert.warning {
   background-color: #fff3cd;
   color: #856404;
-}
+} */
 
 /* Сообщения с информацией */
-.alert.info {
+/* .alert.info {
   background-color: #d1ecf1;
   color: #0c5460;
-}
+} */
 
 /* Скрытие popup */
 .hidden {
@@ -312,8 +320,17 @@ body, html {
 /* Скрыть стиль точек */
 .errorlist {
   list-style-type:  none;
+  color: red;
 }
 
 .errorlist li >  {
   display: none;
+
+}
+
+.error {
+  border: red;
+  border-style: solid;
+  z-index:99999999;
+  border-radius: 5px;
 }

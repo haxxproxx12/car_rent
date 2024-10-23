@@ -101,13 +101,15 @@ def page_car(request, car_id):
     images = car.images.all()
     if request.method == 'POST':
         form = BasketForm(data=request.POST)
-        if form.is_valid():
-            if not request.user.is_authenticated:
-                request.session['car_form_data'] = request.POST
-                request.session['car_id'] = car_id
-                return redirect(f'/users/login?next={request.path}')
+        print('\n\n\n',form, '/n/n/n')
+        if form.clean_date():
+            if form.is_valid():
+                if not request.user.is_authenticated:
+                    request.session['car_form_data'] = request.POST
+                    request.session['car_id'] = car_id
+                    return redirect(f'/users/login?next={request.path}')
 
-
+            
             basket_item = form.save(commit=False)
             basket_item.user = request.user
             basket_item.car = car
@@ -119,6 +121,8 @@ def page_car(request, car_id):
                 car.is_rented = True
                 car.save()
                 return redirect('cart')
+        else:
+            form.add_error('end_date', 'Конечная дата не может быть меньше')
     else:
         if 'car_form_data' in request.session and 'car_id' in request.session and request.session['car_id'] == car_id:
             form = BasketForm(request.session['car_form_data'])

@@ -82,12 +82,13 @@
 }
 
 .rent-btn:hover {
-color: #fff;
-background-color: #336db8;
+    color: #fff;
+    background-color: #336db8;
 }
 
 .rent-btn:disabled {
-pointer-events: none;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* slider */

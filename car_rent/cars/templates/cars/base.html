@@ -107,7 +107,7 @@
     </footer>
   </div>
 
-<script>
+{% comment %} <script>
   document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("themeToggle");
     const body = document.body;
@@ -198,7 +198,7 @@
     }
   });
 
-</script>
-
+</script> {% endcomment %}
+{% include "cars/theme.html" %}
 </body>
 </html>
