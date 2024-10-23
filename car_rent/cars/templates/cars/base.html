@@ -12,12 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme">
   <div class="wrapper">
-    <header class="header">
+    <header class="header light-theme">
       <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
 
-      <nav class="nav-menu">
+      <nav class="nav-menu light-theme">
         <a href="{% url 'cars:index' %}">Автопарк</a>
         <a href="#services">Услуги</a>
         <a href="#prices">Цены</a>
@@ -25,60 +25,63 @@
         <a href="#contacts">Контакты</a>
         <a href="{% url 'about' %}">О нас</a>
       </nav>
-      <div class="auth">
+      <button id="themeToggle">
+        <img class="img" id="img" alt="Светлая тема" src='{% static "img/icons/dark.png" %}' />
+      </button>
+      <div class="auth light-theme">
         {% if user.is_authenticated %}
           <div class="cart">
             <a href="{% url 'cart' %}" class="cart-btn">
-              <img class="cart-img" src={% static "img/icons/cart.png" %} alt="Корзина">
+              <img class="cart-img" id="cart-img" src={% static "img/icons/cart-dark.png" %} alt="Корзина">
             </a>
           </div>
-          <a href="{% url 'users:profile' %}" class="profile-btn">{{ user.username }}</a>
-          <a href="{% url 'users:logout' %}" class="logout-btn">Выход</a>
+          <a href="{% url 'users:profile' %}" class="profile-btn" id="profile-btn">{{ user.username }}</a>
+          <a href="{% url 'users:logout' %}" class="logout-btn" id="logout-btn">Выход</a>
         {% else %}
-          <a href="{% url 'users:register' %}" class="register-btn">Регистрация</a>
-          <a href="{% url 'users:login' %}" class="login-btn">Вход</a>
+          <a href="{% url 'users:register' %}" class="register-btn" id="register-btn">Регистрация</a>
+          <a href="{% url 'users:login' %}" class="login-btn" id="login-btn">Вход</a>
         {% endif %}
       </div>
     </header>
 
     <div class="main">
-      <div id="popup-message" class="popup hidden">
-        {% if messages %}
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const popup = document.getElementById("popup-message");
-            if (popup) {
-                popup.classList.add("show");
-        
-                // Автоматическое скрытие popup через 3 секунды
-                {% comment %} setTimeout(function () {
-                    closePopup();
-                }, 3000); {% endcomment %}
+      {% if messages %}
+        <div id="popup-message" class="popup hidden">
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const popup = document.getElementById("popup-message");
+              if (popup) {
+                  popup.classList.add("show");
+          
+                  // Автоматическое скрытие popup через 3 секунды
+                  {% comment %} setTimeout(function () {
+                      closePopup();
+                  }, 3000); {% endcomment %}
+              }
+            });
+          
+            function closePopup() {
+              const popup = document.getElementById("popup-message");
+              if (popup) {
+                  popup.classList.remove("show");
+                  popup.classList.add("hidden");
+              }
             }
-          });
-        
-          function closePopup() {
-            const popup = document.getElementById("popup-message");
-            if (popup) {
-                popup.classList.remove("show");
-                popup.classList.add("hidden");
-            }
-          }
-        </script>
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">
-                        <span>{{ message }}</span>
-                        <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия -->
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-      </div>
+          </script>
+          <div class="messages">
+              {% for message in messages %}
+                  <div class="alert {{ message.tags }}">
+                      <span>{{ message }}</span>
+                      <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия -->
+                  </div>
+              {% endfor %}
+          </div>
+        </div>
+      {% endif %}
       {% block context %} {% endblock %}
     </div>
     
-    <footer>
+    <footer class="footer light-theme">
       <div class="place">
         <div><a href="{% url 'index' %}"><img src='{% static "/img/logo.png" %}' alt="logo"></a></div>
         <div>
@@ -103,6 +106,99 @@
       <p class="copy">&copy; 2024 &ensp; ООО “Не ваше дело”. Все права защищены.</p>
     </footer>
   </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const body = document.body;
+    var img = document.getElementById('img');
+    var cartimg = document.getElementById('cart-img');
+    const header = document.querySelector('.header');
+    const navMenu = document.querySelector('.nav-menu');
+    const auth = document.querySelector('.auth');
+    const main = document.querySelector('.main');
+    const serviceItems = document.querySelectorAll('.service-item');
+    const footer = document.querySelector('.footer');
+    const cardItems = document.querySelectorAll('.car-card');
+    const infoItems = document.querySelectorAll('.car-info');
+
+
+    // Проверяем, есть ли сохранённая тема в localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        applyTheme(savedTheme);
+        updateImg(savedTheme);
+    }
+
+    // Добавляем обработчик клика на кнопку переключения темы
+    themeToggle.addEventListener("click", function () {
+        const currentTheme = body.classList.contains("light-theme") ? "light-theme" : "dark-theme";
+        const newTheme = currentTheme === "light-theme" ? "dark-theme" : "light-theme";
+
+        // Применяем новую тему ко всем элементам
+        applyTheme(newTheme);
+
+        // Обновляем текст кнопки
+        updateImg(newTheme);
+
+        // Сохраняем выбранную тему в localStorage
+        localStorage.setItem("theme", newTheme);
+    });
+
+    function applyTheme(theme) {
+        // Убираем текущие классы и добавляем новые на body, header и footer
+        body.classList.remove("light-theme", "dark-theme");
+        header.classList.remove("light-theme", "dark-theme");
+        footer.classList.remove("light-theme", "dark-theme");
+        navMenu.classList.remove("light-theme", "dark-theme");
+        auth.classList.remove("light-theme", "dark-theme");
+        main.classList.remove("light-theme", "dark-theme");
+        for (let index = 0; index < serviceItems.length; index++) {
+          const element = serviceItems[index];
+          element.classList.remove("light-theme", "dark-theme");
+        }
+        for (let index = 0; index < cardItems.length; index++) {
+          const element = cardItems[index];
+          element.classList.remove("light-theme", "dark-theme");
+        }
+        for (let index = 0; index < infoItems.length; index++) {
+          const element = infoItems[index];
+          element.classList.remove("light-theme", "dark-theme");
+        }
+
+        body.classList.add(theme);
+        header.classList.add(theme);
+        footer.classList.add(theme);
+        navMenu.classList.add(theme);
+        auth.classList.add(theme);
+        main.classList.add(theme);
+        for (let index = 0; index < serviceItems.length; index++) {
+          const element = serviceItems[index];
+          element.classList.add(theme);       
+        }
+        for (let index = 0; index < cardItems.length; index++) {
+          const element = cardItems[index];
+          element.classList.add(theme);       
+        }
+        for (let index = 0; index < infoItems.length; index++) {
+          const element = infoItems[index];
+          element.classList.add(theme);       
+        }
+    }
+
+
+    function updateImg(theme) {
+        if (theme === "dark-theme") {
+          img.setAttribute('src', '{% static "img/icons/light.png" %}')
+          cartimg.setAttribute('src', '{% static "img/icons/cart-light.png" %}')
+        } else {
+          img.setAttribute('src', '{% static "img/icons/dark.png" %}')
+          cartimg.setAttribute('src', '{% static "img/icons/cart-dark.png" %}')
+        }
+    }
+  });
+
+</script>
 
 </body>
 </html>

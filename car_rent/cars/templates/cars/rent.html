@@ -35,15 +35,15 @@
             {% endfor %}
     </div>
 
+    {% if cars %}
     <div class="car-cards">
-      {% if cars %}
         {% for car in cars %}
         {% if car.is_rented == False %}
-        <div class="car-card">
+        <div class="car-card light-theme">
             <a href="{% url 'cars:page_car' car.id %}">
               <img class="car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
             </a>
-            <div class="car-info">
+            <div class="car-info light-theme">
               <h3>{{ car.brand }} {{ car.model }}</h3>
               <p>Год выпуска: {{ car.year }}</p>
               <p>Цена: {{ car.price }} руб/день</p>
@@ -51,11 +51,13 @@
         </div>
         {% endif %}
         {% endfor %}
-      {% else %}
-          <p>Автомобили не найдены.</p>
-      {% endif %}
     </div>
-
+    {% else %}
+    <div class="car-none">
+      <p>Автомобили не найдены.</p>
+      <a href="?brand=all" class="load-more">Сбросить фильтр</a>
+    </div>
+    {% endif %}
     <button id="load-more" class="load-more">Показать ещё</button>
 </section>
 

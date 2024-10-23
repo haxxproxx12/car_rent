@@ -11,7 +11,10 @@
 
 {% block context %}
 <section class="car-details-section">
-    <div class="car-details-container">
+    <div class="container">
+        <h1>{{ car.brand.name }} {{ car.model }}</h1>
+    </div>
+    <div class="car-img-container">
         <div class="slider">
             <div class="slides">
                 {% for image in car_images %}
@@ -27,24 +30,32 @@
         </div>
 
     </div>
-    <div class="car-info">
+    <div class="container">
         <div>
-            <h1>{{ car.brand.name }} {{ car.model }}</h1>
-            <p>{{ car.description }}</p>
-            <p><strong>Год выпуска:</strong> {{ car.year }}</p>
-            <p><strong>Цена за день:</strong> {{ car.price }} руб</p>
+            <div class="car-info">
+                <div class="information">
+                    <div>
+                        <p><strong>Описание</strong></p>
+                        <p>{{ car.description }}</p>
+                        <p><strong>Год выпуска:</strong> {{ car.year }}</p>
+                        <p><strong>Цена за день:</strong> {{ car.price }} руб</p>
+                    </div>
+                </div>
+                <div class="reservation">
+                    <form method="POST" class="rental-form">
+                        {% csrf_token %}
+                        <label for="{{ form.start_date.id_for_label}}">Дата начала</label>
+                        {{ form.start_date }}
+                        <label for="{{ form.end_date.id_for_label}}">Дата окончания</label>
+                        {{ form.end_date }}
+                        <button type="submit" class="rent-btn">Забронировать</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <form method="POST" class="rental-form">
-            {% csrf_token %}
-            <label for="{{ form.start_date.id_for_label}}">Дата начала</label>
-            {{ form.start_date }}
-            <label for="{{ form.end_date.id_for_label}}">Дата окончания</label>
-            {{ form.end_date }}
-            <button type="submit" class="auth-btn">Забронировать</button>
-        </form>
     </div>
 </section>
+
 
 <script>
     let currentSlide = 0;

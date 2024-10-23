@@ -1,15 +1,24 @@
 .car-details-section {
     padding: 50px 20px;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.car-details-container {
+.car-img-container {
     display: flex;
     gap: 40px;
     max-width: 1200px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 20px;
+    max-width: 100%;
 }
 
 .car-image img {
@@ -19,9 +28,9 @@
 }
 
 .car-info {
-    max-width: 600px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .car-info h1 {
@@ -34,19 +43,35 @@
     margin-bottom: 10px;
 }
 
-/* .info {
-    padding: 50px;
-} */
+.information {
+    width: 70%;
+}
+
+.reservation {
+    width: 30%;
+}
 
 .rental-form {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    row-gap: 10px;
+}
+.rental-form input {
+    width: 150px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.auth-btn {
+.rental-form label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.rent-btn {
     padding: 10px 20px;
     background-color: #d9d9d9;
     color: #333;
@@ -56,12 +81,12 @@
     font-size: 1rem;
 }
 
-.auth-btn:hover {
+.rent-btn:hover {
 color: #fff;
 background-color: #336db8;
 }
 
-.auth-btn:disabled {
+.rent-btn:disabled {
 pointer-events: none;
 }
 

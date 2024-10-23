@@ -16,46 +16,13 @@
       <p>У нас Вы всегда подберёте то, что Вам по душе!</p>
     </section>
 
-    {% comment %} <section class="car-selection">
-      <h2>Выберите срок аренды, марку или класс автомобиля</h2>
-      <div class="selection-options">
-        <div class="overlap">
-            <button class="select-button">Начало
-              <img class="img" src='{% static "img/icons/calendar.png" %}' />
-            </button>
-            <button class="select-button">Окончание
-              <img class="img" src='{% static "img/icons/calendar.png" %}' />
-            </button>
-            <button class="select-button">Марка
-              <img class="img" src='{% static "img/icons/down.png" %}' />
-            </button>
-            <button class="select-button">Класс
-              <img class="img" src='{% static "img/icons/down.png" %}' />
-            </button>
-            <button class="select-button">Показать</button>
-        </div>
-        <div class="car-cards">
-          {% for car in cars %}
-          <div class="car-card">
-            <img class="car-image" src="media/{{ car.image }}" >
-            <div class="car-info">
-              <h3>{{ car.brand }} {{ car.model }}</h3>
-              <p>{{ car.discription }}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <button id="load-more" class="load-more">Показать ещё</button>
-      </div>
-    </section>
-
-    <hr align="center" width="500" size="1" color="#336db8" /> {% endcomment %}
+    <hr align="center" width="500" size="1" color="#336db8" />
 
     <section class="services-section">
       <h2>Наши услуги</h2>
       <div class="services-list">
         {% for i in services %}
-        <div class="service-item">
+        <div class="service-item light-theme">
           <h3>{{ i.name }}</h3>
           <p>{{ i.discription }}</p>
         </div>

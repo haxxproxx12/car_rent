@@ -20,8 +20,9 @@
   </head>
   <body>
     <div class="wrapper">
+      {% if messages %}
       <div id="popup-message" class="popup hidden">
-        {% if messages %}
+        
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             const popup = document.getElementById("popup-message");
@@ -51,8 +52,9 @@
                 </div>
             {% endfor %}
         </div>
-        {% endif %}
+        
       </div>
+      {% endif %}
       {% block context %} {% endblock %}
     </div>
   </body>
