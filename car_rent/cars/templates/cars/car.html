@@ -70,38 +70,4 @@
         </div>
     </div>
 </section>
-
-
-<script>
-    let currentSlide = 0;
-
-    function moveSlides(direction) {
-        const slides = document.querySelector('.slides');
-        const totalSlides = slides.children.length;
-        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-        const offset = currentSlide * -100;
-        slides.style.transform = `translateX(${offset}%)`;
-    }
-    // const start_date = document.getElementById('start_date').value;
-    // const end_date = document.getElementById('end_date').value;
-    // console.log(start_date)
-    // console.log(end_date)
-    document.addEventListener("input", () => {
-        const start_date = document.getElementById('start_date').value;
-        const end_date = document.getElementById('end_date').value;
-        const btn = document.getElementById('rent-btn');
-
-        if (end_date < start_date) {
-            btn.setAttribute('disabled', 'disabled')
-            end_date.setAttribute('.error')
-        }
-        else {
-            btn.removeAttribute('disabled', 'disabled')
-            end_date.removeAttribute('.error')
-
-        }
-    });
-
-
-</script>
 {% endblock %}

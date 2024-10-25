@@ -24,9 +24,9 @@
   </div>
   {% endif %} {% endcomment %}
   <h1>Вход</h1>
-  <form class="auth-form" action="{% url 'users:login' %}?next={{ next }}" method="post">
+  <form class="auth-form light-theme" id="auth-form" action="{% url 'users:login' %}?next={{ next }}" method="post">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="form-group light-theme">
       <label for="{{ form.username.id_for_label}}">Имя пользователя</label>
       {{ form.username }}
     </div>

@@ -22,7 +22,7 @@
 
   <!-- Форма регистрации -->
   <h1>Регистрация</h1>
-  <form class="auth-form" action="{% url 'users:register' %}?next={{ request.GET.next }}" method="post">
+  <form class="auth-form light-theme" action="{% url 'users:register' %}?next={{ request.GET.next }}" method="post">
     {% csrf_token %}
     <div class="form-group">
       <label for="{{ form.username.id_for_label }}">Имя пользователя</label>

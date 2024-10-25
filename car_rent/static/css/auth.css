@@ -15,10 +15,16 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .auth-form.light-theme {
+    background-color: #fff;
+  }
+  .auth-form.dark-theme {
+    background-color: #999999;
   }
   
   .form-group {

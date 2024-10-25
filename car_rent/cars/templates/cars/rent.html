@@ -60,31 +60,4 @@
     {% endif %}
     <button id="load-more" class="load-more">Показать ещё</button>
 </section>
-
-<script>
-  let visibleCars = 3;
-  const loadMoreButton = document.getElementById('load-more');
-  const carItems = document.querySelectorAll('.car-card');
-
-  function showCars() {
-      carItems.forEach((car, index) => {
-          if (index < visibleCars) {
-              car.style.display = 'block';
-          } else {
-              car.style.display = 'none';
-          }
-      });
-      if (visibleCars >= carItems.length) {
-          loadMoreButton.style.display = 'none';
-      }
-  }
-
-  loadMoreButton.addEventListener('click', function() {
-      visibleCars += 3;
-      showCars();
-  });
-
-  showCars();
-</script>
-
 {% endblock %}
