@@ -267,28 +267,24 @@ body, html {
 }
 
 /* Сообщения об успехе */
-/* .alert.success {
-  background-color: #d4edda;
+.alert.success {
   color: #155724;
-} */
+}
 
 /* Сообщения об ошибке */
-/* .alert.error {
-  background-color: #f8d7da;
+.alert.error {
   color: #721c24;
-} */
+}
 
 /* Сообщения с предупреждениями */
-/* .alert.warning {
-  background-color: #fff3cd;
+.alert.warning {
   color: #856404;
-} */
+}
 
 /* Сообщения с информацией */
-/* .alert.info {
-  background-color: #d1ecf1;
+.alert.info {
   color: #0c5460;
-} */
+}
 
 /* Скрытие popup */
 .hidden {

@@ -11,18 +11,8 @@
 
 {% block context %}
 <section class="auth-section">
-  {% comment %} <!-- Отображение сообщений -->
-  {% if messages %}
-    <div class="messages">
-      {% for message in messages %}
-        <div class="alert {{ message.tags }}">{{ message }}</div>
-      {% endfor %}
-    </div>
-  {% endif %} {% endcomment %}
-
-  <!-- Форма регистрации -->
   <h1>Регистрация</h1>
-  <form class="auth-form light-theme" action="{% url 'users:register' %}?next={{ request.GET.next }}" method="post">
+  <form class="auth-form light-theme" id="auth-form" action="{% url 'users:register' %}?next={{ request.GET.next }}" method="post">
     {% csrf_token %}
     <div class="form-group">
       <label for="{{ form.username.id_for_label }}">Имя пользователя</label>

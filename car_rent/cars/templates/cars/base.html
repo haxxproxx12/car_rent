@@ -19,10 +19,10 @@
 
       <nav class="nav-menu light-theme">
         <a href="{% url 'cars:index' %}">Автопарк</a>
-        <a href="#services">Услуги</a>
-        <a href="#prices">Цены</a>
+        <a href="{% url 'cars:services' %}">Услуги</a>
+        <a href="{% url 'cars:price' %}">Цены</a>
         <a href="#conditions">Условия</a>
-        <a href="#contacts">Контакты</a>
+        {% comment %} <a href="#contacts">Контакты</a> {% endcomment %}
         <a href="{% url 'about' %}">О нас</a>
       </nav>
       <button id="themeToggle">
@@ -54,9 +54,9 @@
                   popup.classList.add("show");
           
                   // Автоматическое скрытие popup через 3 секунды
-                  {% comment %} setTimeout(function () {
+                  setTimeout(function () {
                       closePopup();
-                  }, 3000); {% endcomment %}
+                  }, 5000);
               }
             });
           
@@ -72,7 +72,7 @@
               {% for message in messages %}
                   <div class="alert {{ message.tags }}">
                       <span>{{ message }}</span>
-                      <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия -->
+                      {% comment %} <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия --> {% endcomment %}
                   </div>
               {% endfor %}
           </div>

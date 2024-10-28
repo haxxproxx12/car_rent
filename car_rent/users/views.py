@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 def login(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
+        errors = form.errors
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
@@ -28,10 +29,12 @@ def login(request):
                     return HttpResponseRedirect(reverse('users:profile'))  # Перенаправление на профиль
 
         else:
-            messages.error(request, form.error_messages)
+            for error in errors:
+                messages.error(request, form.errors[error])
 
     else:
         form = UserLoginForm()
+    
     context = {'form': form,
             'title': 'Вход',
             'next': request.GET.get('next', ''),  # Передаем параметр next в контекст для формы

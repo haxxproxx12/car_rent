@@ -36,7 +36,7 @@
                     <td>{{ item.total_days }}</td>
                     <td>{{ item.total_price }} руб</td>
                     <td>
-                        <a href="{% url 'cars:cart_delete' item.id %}" class="login-btn">удалить</a>
+                        <a href="{% url 'cars:cart_delete' item.id %}" class="del-btn">Удалить</a>
                     </td>
                 </tr>
                 {% endfor %}

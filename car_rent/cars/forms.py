@@ -18,3 +18,10 @@ class BasketForm(forms.ModelForm):
         if end_date < start_date:
             return False
         return True
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Имя', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите имя'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Введите email'}))
+    phone_code = forms.ChoiceField(label='Код страны', choices=[('+7', '+7'), ('+1', '+1'), ('+44', '+44'), ('+49', '+49')], initial='+7', widget=forms.Select(attrs={'class': 'form-control phone-code'}))
+    phone_number = forms.CharField(label='Номер телефона', max_length=15, widget=forms.TextInput(attrs={'class': 'form-control phone-number', 'placeholder': '999 99 99'}))
+    message = forms.CharField(label='Сообщение', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))

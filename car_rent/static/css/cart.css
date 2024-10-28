@@ -19,9 +19,9 @@
     text-align: center;
 }
 
-.cart-table th {
+/* .cart-table th {
     background-color: #f4f4f4;
-}
+} */
 
 .cart-car-image {
     width: 150px;
@@ -52,6 +52,22 @@
 }
 
 .checkout-btn:hover {
+    color: #fff;
+    background-color: #0056b3;
+}
+
+.del-btn {
+    padding: 8px 15px;
+    background-color: #d9d9d9;
+    color: #333;
+    text-decoration: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.del-btn:hover {
     color: #fff;
     background-color: #0056b3;
 }

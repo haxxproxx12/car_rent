@@ -1,0 +1,47 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/price.css' %}">
+{% endblock %}
+
+{% block context %}
+<section class="price-section">
+    <h1>Цены на автомобили</h1>
+    <table class="price-table light-theme" id="price-table">
+        <thead>
+            <tr>
+                <th>Марка и модель</th>
+                <th>Цена за день</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody class="car-table">
+            {% for car in cars %}
+            <tr class="">
+                <td>{{ car.brand.name }} {{ car.model }}</td>
+                <td>{{ car.price }} руб.</td>
+                <td>
+                    <a href="{% url 'cars:page_car' car.id %}" class="select-btn">Заказать</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="promo-text">
+        <h2>Ищете комфорт и стиль в дороге?</h2>
+        <p>Аренда автомобилей с нами — это ваш путь к свободе передвижения!</p>
+        <p>От путешествий по городам до деловых встреч — выберите автомобиль, идеально подходящий под ваш стиль и нужды. В нашем автопарке представлены автомобили на любой вкус: от эконом-класса до премиальных моделей, всегда в отличном состоянии и готовые к поездке.</p>
+        <ul>
+            <li><strong>Широкий выбор автомобилей</strong> — от надежных седанов до мощных внедорожников.</li>
+            <li><strong>Удобство и простота</strong> — бронирование займет всего пару минут, а гибкие условия аренды подстроятся под ваше расписание.</li>
+            <li><strong>Доступные цены</strong> — мы предлагаем конкурентные цены и выгодные условия, чтобы вы могли наслаждаться поездкой, не думая о бюджете.</li>
+        </ul>
+        <p>Почувствуйте свободу передвижения с нами — забронируйте автомобиль и наслаждайтесь комфортной дорогой!</p>
+    </div>
+</section>
+{% endblock %}

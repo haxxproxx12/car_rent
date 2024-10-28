@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
-from cars.models import CarClasses, Cars, CarBrands
-from cars.models import Basket, RentalHistory
-from cars.forms import BasketForm
+from cars.models import CarClasses, Cars, CarBrands, Basket, RentalHistory
+from cars.forms import BasketForm, ContactForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -11,18 +10,20 @@ from django.contrib import messages
 
 # Create your views here.
 
+services = [
+            {'name': 'Фотосессия на фоне авто', 'description': 'Организуем профессиональную фотосессию с вашими любимыми автомобилями. Отличный выбор для особых событий или для создания уникального контента в социальных сетях.'},
+            {'name': 'Аренда авто на мероприятие', 'description': 'Идеальное решение для свадьбы, корпоратива или любого другого важного события. Предоставим вам автомобиль, который подчеркнёт вашу важность на мероприятии.'},
+            {'name': 'Трансфер в аэропорт', 'description': 'Удобный и быстрый трансфер в любой аэропорт. Мы заберем вас вовремя и доставим в нужное место с комфортом.'},
+            {'name': 'Аренда автомобиля с водителем', 'description': 'Не хотите беспокоиться о вождении? Возьмите автомобиль вместе с опытным водителем, чтобы расслабиться и наслаждаться поездкой.'},
+        ]
+
 def index(request):
     context = {
         'cars': Cars.objects.order_by('brand').all(),
         'classes': CarClasses.objects.order_by('name').all(),
         'brands': CarBrands.objects.order_by('name').all(),
         'title': 'АрендаRzn',
-        'services': [
-            {'name': 'Фотосессия на фоне авто', 'discription': 'Организуем профессиональную фотосессию с вашими любимыми автомобилями. Отличный выбор для особых событий или для создания уникального контента в социальных сетях.'},
-            {'name': 'Аренда авто на мероприятие', 'discription': 'Идеальное решение для свадьбы, корпоратива или любого другого важного события. Предоставим вам автомобиль, который подчеркнёт вашу важность на мероприятии.'},
-            {'name': 'Трансфер в аэропорт', 'discription': 'Удобный и быстрый трансфер в любой аэропорт. Мы заберем вас вовремя и доставим в нужное место с комфортом.'},
-            {'name': 'Аренда автомобиля с водителем', 'discription': 'Не хотите беспокоиться о вождении? Возьмите автомобиль вместе с опытным водителем, чтобы расслабиться и наслаждаться поездкой.'},
-        ],
+        'services': services,
 }
     return render(request, 'cars/index.html', context)
 
@@ -156,3 +157,28 @@ def return_car(request, rental_id):
 
     return redirect('/users/rental_history')
 
+def price_view(request):
+    cars = Cars.objects.all()
+    context = {
+        'title': 'Цены на автомобили',
+        'cars': cars,
+    }
+    return render(request, 'cars/price.html', context)
+
+def services_view(request):
+    # Обрабатываем форму обратной связи
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Добавляем логику отправки письма или сохранения данных
+            messages.success(request, 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.')
+            return redirect('cars:services')
+    else:
+        form = ContactForm()
+
+    context = {
+        'title': 'Наши услуги',
+        'services': services,
+        'form': form,
+    }
+    return render(request, 'cars/services.html', context)

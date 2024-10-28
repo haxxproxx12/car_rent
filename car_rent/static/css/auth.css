@@ -48,7 +48,7 @@
   .form-group .img {
     position: absolute;
     right: 10px;
-    top: 38px; /* Выравниваем по высоте */
+    top: 38px;
     cursor: pointer;
   }
   

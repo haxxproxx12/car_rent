@@ -1,0 +1,77 @@
+.price-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 20px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.price-table.light-theme {
+    background-color: #fff;
+    color: #333;
+}
+.price-table.dark-theme {
+    color: #fff;
+    background-color: #999999;
+}
+
+.price-table th, .price-table td {
+    padding: 12px;
+    /* border: 1px solid #ddd; */
+    text-align: center;
+}
+
+
+.select-btn {
+    padding: 8px 15px;
+    background-color: #d9d9d9;
+    color: #333;
+    text-decoration: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.select-btn:hover {
+    color: #fff;
+    background-color: #0056b3;
+}
+
+.promo-text {
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.promo-text h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.promo-text p, .promo-text ul {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.promo-text ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.promo-text li {
+    margin-bottom: 5px;
+}

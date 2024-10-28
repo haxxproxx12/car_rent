@@ -10,19 +10,7 @@
 {% endblock %}
 
 {% block context %}
-
 <section class="auth-section">
-  {% comment %} {% if form.errors or messages %}
-  <div class="{% if messages %} message {% else %} error {% endif %}">
-    {% if messages %}
-      {% for message in messages %}
-        {{ message }}
-      {% endfor %}
-    {% else %}
-      {{ form.non_field_errors }}
-    {% endif %}
-  </div>
-  {% endif %} {% endcomment %}
   <h1>Вход</h1>
   <form class="auth-form light-theme" id="auth-form" action="{% url 'users:login' %}?next={{ next }}" method="post">
     {% csrf_token %}

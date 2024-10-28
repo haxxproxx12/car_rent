@@ -11,9 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const footer = document.querySelector('.footer');
     const cardItems = document.querySelectorAll('.car-card');
     const infoItems = document.querySelectorAll('.car-info');
+    const rental = document.getElementById('rental-form');
     const authForm = document.getElementById('auth-form');
-
-    console.log(authForm);
+    const priceTable = document.getElementById('price-table');
+    const contactForm = document.getElementById('contact-form');
 
 
     // Проверяем, есть ли сохранённая тема в localStorage
@@ -69,6 +70,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const element = infoItems[index];
             element.classList.remove("light-theme", "dark-theme");
         }
+        if (rental) {
+            rental.classList.remove("light-theme", "dark-theme");
+        }
+        if (priceTable) {
+            priceTable.classList.remove("light-theme", "dark-theme");
+        }
+        if (contactForm) {
+            contactForm.classList.remove("light-theme", "dark-theme");
+        }
 
         body.classList.add(theme);
         if (header && footer) {
@@ -95,21 +105,33 @@ document.addEventListener("DOMContentLoaded", function () {
             const element = infoItems[index];
             element.classList.add(theme);       
         }
+        if (rental) {
+            rental.classList.add(theme)
+        }
+        if (priceTable) {
+            priceTable.classList.add(theme)
+        }
+        if (contactForm) {
+            contactForm.classList.add(theme)
+        }
     }
 
 
     function updateImg(theme) {
-        if (theme === "dark-theme") {
-            img.setAttribute('src', '/static/img/icons//light.png')
-            if (cartimg) {
-                cartimg.setAttribute('src', '/static/img/icons/cart-light.png')
-            }
-        } else {
-            img.setAttribute('src', '/static/img/icons/dark.png')
-            if (cartimg) {
-                cartimg.setAttribute('src', '/static/img/icons/cart-dark.png')
-            }
+        if (img) {
+            if (theme === "dark-theme") {
+                img.setAttribute('src', '/static/img/icons//light.png')
+                if (cartimg) {
+                    cartimg.setAttribute('src', '/static/img/icons/cart-light.png')
+                }
+            } else {
+                img.setAttribute('src', '/static/img/icons/dark.png')
+                if (cartimg) {
+                    cartimg.setAttribute('src', '/static/img/icons/cart-dark.png')
+                }
+            } 
         }
+        
     }
 });
 
@@ -125,27 +147,30 @@ function moveSlides(direction) {
 
 document.addEventListener("input", function () {
     let div = document.createElement('div');
+    div.setAttribute('id', 'end_error')
+    div.innerHTML = 'Конечная дата не должна быть меньше начальной!';
+
 
     const start_date = document.getElementById('start_date').value;
     const end_date = document.getElementById('end_date').value;
     const btn = document.getElementById('rent-btn');
 
-    const rental_form = document.querySelector('.rental_form')
+    const end_error = document.querySelector('#end_error')
 
     const end_date_form = document.getElementById('end_date');
-
-    console.log(end_date);
 
     if (end_date) {
         if (end_date < start_date) {
             btn.setAttribute('disabled', 'disabled');
             end_date_form.classList.add('error');
+            if (!document.getElementById('end_error')) {
+                end_date_form.after(div);
+            }
         }
         else {
             btn.removeAttribute('disabled', 'disabled');
             end_date_form.classList.remove('error');
-            div.innerHTML = 'Конечная дата не должна быть меньше начальной!';
-            document.end_date_form.before(div);
+            end_error.remove()
         }
     }
 
@@ -174,4 +199,24 @@ if (loadMoreButton) {
     });
     
     showCars();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("popup-message");
+    if (popup) {
+        popup.classList.add("show");
+
+        // Автоматическое скрытие popup через 3 секунды
+        setTimeout(function () {
+            closePopup();
+        }, 5000);
+    }
+  });
+
+  function closePopup() {
+    const popup = document.getElementById("popup-message");
+    if (popup) {
+        popup.classList.remove("show");
+        popup.classList.add("hidden");
+    }
 }
