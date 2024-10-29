@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const authForm = document.getElementById('auth-form');
     const priceTable = document.getElementById('price-table');
     const contactForm = document.getElementById('contact-form');
+    const conditions = document.querySelectorAll('.condition');
 
 
     // Проверяем, есть ли сохранённая тема в localStorage
@@ -70,6 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const element = infoItems[index];
             element.classList.remove("light-theme", "dark-theme");
         }
+        for (let index = 0; index < conditions.length; index++) {
+            const element = conditions[index];
+            element.classList.remove("light-theme", "dark-theme");
+        }
         if (rental) {
             rental.classList.remove("light-theme", "dark-theme");
         }
@@ -103,6 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         for (let index = 0; index < infoItems.length; index++) {
             const element = infoItems[index];
+            element.classList.add(theme);       
+        }
+        for (let index = 0; index < conditions.length; index++) {
+            const element = conditions[index];
             element.classList.add(theme);       
         }
         if (rental) {
@@ -162,7 +171,7 @@ document.addEventListener("input", function () {
     if (end_date) {
         if (end_date < start_date) {
             btn.setAttribute('disabled', 'disabled');
-            end_date_form.classList.add('error');
+            end_date_form.classList.add('.error');
             if (!document.getElementById('end_error')) {
                 end_date_form.after(div);
             }
@@ -170,7 +179,10 @@ document.addEventListener("input", function () {
         else {
             btn.removeAttribute('disabled', 'disabled');
             end_date_form.classList.remove('error');
-            end_error.remove()
+            if (document.getElementById('end_error')) {
+                end_error.remove();
+            }
+            
         }
     }
 

@@ -330,3 +330,7 @@ body, html {
   z-index:99999999;
   border-radius: 5px;
 }
+
+#end_error {
+  color: red;
+}

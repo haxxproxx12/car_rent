@@ -182,3 +182,9 @@ def services_view(request):
         'form': form,
     }
     return render(request, 'cars/services.html', context)
+
+def conditions_view(request):
+    context = {
+        'title': 'Условия уренды',
+    }
+    return render(request, 'cars/conditions.html', context)

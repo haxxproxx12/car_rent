@@ -1,0 +1,78 @@
+.conditions-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.conditions-section h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.condition {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.condition.light-theme {
+    background-color: #fff;
+}
+.condition.dark-theme {
+    background-color: #999999;
+}
+
+.condition h2 {
+    color: #555;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.condition.light-theme h2 {
+    color: #333;
+}
+.condition.dark-theme h2 {
+    color: #fff;
+}
+
+.condition p, .condition ul {
+    color: #555;
+    font-size: 1em;
+    line-height: 1.6;
+}
+.condition.light-theme p, .condition.light-theme ul {
+    color: #666;
+}
+.condition.dark-theme p, .condition.dark-theme ul {
+    color: #f0f0f0;
+}
+
+.condition ul {
+    padding: 10px;
+}
+
+.download-agreement {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.download-btn {
+    padding: 8px 15px;
+    background-color: #d9d9d9;
+    color: #333;
+    text-decoration: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    color: #fff;
+    background-color: #336db8;
+}

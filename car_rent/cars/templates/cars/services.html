@@ -20,26 +20,28 @@
         </div>
         {% endfor %}
     </div>
+
+    <hr align="center" width="500" size="1" color="#336db8" />
+
+
     <div class="contact-form-section">
         <form method="post" action="{% url 'cars:services' %}" class="contact-form light-theme" id="contact-form">
             {% csrf_token %}
             <h2>Связаться с нами</h2>
+            {{ form.name.label_tag }}
             {{ form.name }}
+            {{ form.email.label_tag }}
             {{ form.email }}
-            <div class="phone-field">
+            {% comment %} <div class="phone-field">
                 {{ form.phone_code.label_tag }} {{ form.phone_code }}
                 {{ form.phone_number.label_tag }} {{ form.phone_number }}
-            </div>
+            </div> {% endcomment %}
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {{ form.message.label_tag }}
             {{ form.message }}
             <button type="submit" class="btn-submit">Отправить сообщение</button>
         </form>
-        {% comment %} {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %} {% endcomment %}
     </div>
 </section>
 {% endblock %}
