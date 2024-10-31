@@ -268,12 +268,12 @@ body, html {
 
 /* Сообщения об успехе */
 .alert.success {
-  color: #155724;
+  color: green;
 }
 
 /* Сообщения об ошибке */
 .alert.error {
-  color: #721c24;
+  color: red;
 }
 
 /* Сообщения с предупреждениями */
@@ -325,8 +325,8 @@ body, html {
 }
 
 .error {
-  border: red;
-  border-style: solid;
+  /* border: red; */
+  /* border-style: solid; */
   z-index:99999999;
   border-radius: 5px;
 }

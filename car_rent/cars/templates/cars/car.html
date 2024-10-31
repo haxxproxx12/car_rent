@@ -80,12 +80,12 @@
                     {% else %}
                     {{ form.end_date }}
                     {% endif %}
-                    {% if form.end_date.errors%}
-                        <button type="submit" class="rent-btn" id="rent-btn">Забронировать</button>
+                    {% if car.is_rented %}
+                        <button type="submit" class="rent-btn" id="rent-btn" disabled>Забронировать</button>
                     {% else %}
                         <button type="submit" class="rent-btn" id="rent-btn">Забронировать</button>
                     {% endif %}
-                        
+                
                 </form>
             </div>
         </div>
@@ -97,4 +97,14 @@
         </div>
     </div>
 </section>
+
+<script>
+    const btn = document.getElementById('rent-btn');
+    if ({{car.is_rented}} == True) {
+        btn.setAttribute('disabled', 'disabled');
+    }
+    else {
+        btn.removeAttribute('disabled', 'disabled');
+    }
+</script>
 {% endblock %}

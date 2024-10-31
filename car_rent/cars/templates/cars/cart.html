@@ -49,7 +49,7 @@
         </div>
         <form method="POST">
             {% csrf_token %}
-            <button type="submit" class="checkout-btn">Оформить аренду</button>
+            <button type="submit" class="checkout-btn" id="checkout-btn">Оформить аренду</button>
         </form>
         {% else %}
         <div class="cart-none">
@@ -59,4 +59,15 @@
     </div>
     {% endif %}
 </section>
+
+{% comment %} <script>
+    const btn = document.getElementById('checkout-btn');
+    if ({{car.is_rented}} == True) {
+        btn.setAttribute('disabled', 'disabled');
+    }
+    else {
+        btn.removeAttribute('disabled', 'disabled');
+    }
+</script> {% endcomment %}
+
 {% endblock %}

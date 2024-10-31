@@ -24,7 +24,7 @@
       <div id="popup-message" class="popup hidden">
         <div class="messages">
             {% for message in messages %}
-                <div class="">
+                <div class="alert {{ message.tags }}">
                     <span>{{ message }}</span>
                     {% comment %} <button class="close-btn" onclick="closePopup()">X</button> {% endcomment %}
                 </div>

@@ -11,10 +11,7 @@ class BasketForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'type': 'date', 'min': timezone.now().date(), 'id': 'end_date'}),  # Минимум - сегодня
         }
     
-    def clean_date(self):
-        start_date = self.cleaned_data.get('start_date')
-        end_date = self.cleaned_data.get('end_date')
-        
+    def clean_date(self, start_date, end_date):        
         if end_date < start_date:
             return False
         return True

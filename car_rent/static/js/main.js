@@ -19,7 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Проверяем, есть ли сохранённая тема в localStorage
-    const savedTheme = localStorage.getItem("theme");
+    var savedTheme = '';
+    if (localStorage.getItem("theme") === 'auto') {
+        savedTheme = 'light-theme';
+    }
+    else {
+        savedTheme = localStorage.getItem("theme");
+    }
+
     if (savedTheme) {
         applyTheme(savedTheme);
         updateImg(savedTheme);

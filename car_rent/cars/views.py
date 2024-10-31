@@ -100,25 +100,26 @@ def cart_delete(request, cart_id):
 def page_car(request, car_id):
     car = Cars.objects.get(id=car_id)
     images = car.images.all()
+    start_date = request.POST.get('start_date')
+    end_date = request.POST.get('end_date')
+
     if request.method == 'POST':
         form = BasketForm(data=request.POST)
-        print('\n\n\n',form, '/n/n/n')
-        if form.clean_date():
+        if form.clean_date(start_date, end_date):
             if form.is_valid():
                 if not request.user.is_authenticated:
                     request.session['car_form_data'] = request.POST
                     request.session['car_id'] = car_id
                     return redirect(f'/users/login?next={request.path}')
-
-            
-            basket_item = form.save(commit=False)
-            basket_item.user = request.user
-            basket_item.car = car
-            basket_item.added_at = timezone.now()
-            basket_item.save()
             if car.is_rented == True:
-                form.add_error('is_rented', 'Автомобиль уже забронирован.')
-            else:
+                messages.error(request, 'Автомобиль уже забронирован.')
+            else: 
+                basket_item = form.save(commit=False)
+                basket_item.user = request.user
+                basket_item.car = car
+                basket_item.added_at = timezone.now()
+                basket_item.save()
+                
                 car.is_rented = True
                 car.save()
                 return redirect('cart')
@@ -141,7 +142,6 @@ def page_car(request, car_id):
 @login_required
 def return_car(request, rental_id):
     rental = RentalHistory.objects.get(user=request.user, id=rental_id)
-    print(rental)
     if rental.is_returned == True:
         return redirect('/users/rental_history')
     
@@ -166,11 +166,9 @@ def price_view(request):
     return render(request, 'cars/price.html', context)
 
 def services_view(request):
-    # Обрабатываем форму обратной связи
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Добавляем логику отправки письма или сохранения данных
             messages.success(request, 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.')
             return redirect('cars:services')
     else:

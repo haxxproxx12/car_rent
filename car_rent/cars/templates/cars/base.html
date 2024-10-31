@@ -47,7 +47,7 @@
     <div class="main">
       {% if messages %}
         <div id="popup-message" class="popup hidden">
-          <script>
+          {% comment %} <script>
             document.addEventListener("DOMContentLoaded", function () {
               const popup = document.getElementById("popup-message");
               if (popup) {
@@ -67,7 +67,7 @@
                   popup.classList.add("hidden");
               }
             }
-          </script>
+          </script> {% endcomment %}
           <div class="messages">
               {% for message in messages %}
                   <div class="alert {{ message.tags }}">
