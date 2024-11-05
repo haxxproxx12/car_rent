@@ -20,7 +20,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                messages.success(request, 'Вход выполнен успешно')
+                messages.success(request, 'Вход выполнен успешно!')
                  # Проверяем параметр next, чтобы перенаправить на исходную страницу
                 next_url = request.GET.get('next')
                 if next_url:
@@ -90,6 +90,7 @@ def user_profile(request):
 
 
 def user_logout(request):
+    messages.success(request, 'Выход выполнен успешно!')
     logout(request)
     return redirect('index')
 

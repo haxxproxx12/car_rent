@@ -29,6 +29,13 @@ class Cars(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2)
     carClass = models.ForeignKey(CarClasses, on_delete=models.PROTECT)
     is_rented = models.BooleanField(default=False)
+    color = models.CharField(max_length=64, null=True, blank=True)
+    drive = models.CharField(max_length=64, null=True, blank=True)
+    transmission = models.CharField(max_length=64, null=True, blank=True)
+    power = models.IntegerField(null=True, blank=True)
+    acceleration = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    engine_capacity = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    
 
     def __str__(self) -> str:
         return self.model

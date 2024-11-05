@@ -54,12 +54,24 @@
                                 <div>от 3-х лет</div>
                             </div>
                         </div>
-                        <a href="#conditions" class="conditions-more">Подробнее</a>
+                        <a href="{% url 'cars:conditions' %}" class="conditions-more">Подробнее</a>
                     </div>
                 </div>
                 <div class="car-information">
                     <div class="car-information-header">Характеристики</div>
-                        <p><strong>Год выпуска:</strong> {{ car.year }}</p>
+                        <p><strong>Марка: </strong> {{ car.brand }}</p>
+                        <p><strong>Модель: </strong> {{ car.model }}</p>
+                        <p><strong>Год выпуска: </strong> {{ car.year }}</p>
+                        <p><strong>Класс: </strong> {{ car.carClass }}</p>
+                        <p><strong>Цвет: </strong> {{ car.color }}</p>
+                        <p><strong>Привод: </strong> {{ car.drive }}</p>
+                        <p><strong>Коробка передач: </strong> {{ car.transmission }}</p>
+                        <p><strong>Мощность: </strong> {{ car.power }} л.с.</p>
+                        <p><strong>Объём двигателя: </strong> {{ car.engine_capacity }} л.</p>
+                        <p><strong>Разгон до 100 км./ч: </strong> {{ car.acceleration }} сек.</p>
+                        <br>
+                        <hr width="300" size="1" color="#336db8">
+                        <br>
                         <p><strong>Цена за день:</strong> {{ car.price }} руб</p>
                 </div>
             </div>
@@ -90,12 +102,14 @@
             </div>
         </div>
     </div>
+    {% if car.description %}
     <div class="container">
         <div class="car-description">
             <h3>Описание</h3>
             <p>{{ car.description }}</p>
         </div>
     </div>
+    {% endif %}
 </section>
 
 <script>

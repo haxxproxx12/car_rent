@@ -33,7 +33,9 @@ def rent(request):
     selected_class = request.GET.get('class')
     selected_brand = request.GET.get('brand')
 
-    cars = Cars.objects.all()
+    cars = Cars.objects.all().order_by('brand__name')
+
+    print(cars)
     
     if selected_class and selected_class != 'all':
         cars = cars.filter(carClass__name=selected_class)

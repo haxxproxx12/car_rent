@@ -195,7 +195,7 @@ document.addEventListener("input", function () {
 
 });
 
-let visibleCars = 3;
+let visibleCars = 9;
 const loadMoreButton = document.getElementById('load-more');
 const carItems = document.querySelectorAll('.car-card');
 
@@ -213,7 +213,7 @@ function showCars() {
 }
 if (loadMoreButton) {
     loadMoreButton.addEventListener('click', function() {
-        visibleCars += 3;
+        visibleCars += 9;
         showCars();
     });
     
