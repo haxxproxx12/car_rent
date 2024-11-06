@@ -22,7 +22,6 @@
         <a href="{% url 'cars:services' %}">Услуги</a>
         <a href="{% url 'cars:price' %}">Цены</a>
         <a href="{% url 'cars:conditions' %}">Условия</a>
-        {% comment %} <a href="#contacts">Контакты</a> {% endcomment %}
         <a href="{% url 'about' %}">О нас</a>
       </nav>
       <button id="themeToggle">
@@ -47,32 +46,11 @@
     <div class="main">
       {% if messages %}
         <div id="popup-message" class="popup hidden">
-          {% comment %} <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const popup = document.getElementById("popup-message");
-              if (popup) {
-                  popup.classList.add("show");
-          
-                  // Автоматическое скрытие popup через 3 секунды
-                  setTimeout(function () {
-                      closePopup();
-                  }, 5000);
-              }
-            });
-          
-            function closePopup() {
-              const popup = document.getElementById("popup-message");
-              if (popup) {
-                  popup.classList.remove("show");
-                  popup.classList.add("hidden");
-              }
-            }
-          </script> {% endcomment %}
+
           <div class="messages">
               {% for message in messages %}
                   <div class="alert {{ message.tags }}">
                       <span>{{ message }}</span>
-                      {% comment %} <button class="close-btn" onclick="closePopup()">X</button> <!-- Кнопка закрытия --> {% endcomment %}
                   </div>
               {% endfor %}
           </div>

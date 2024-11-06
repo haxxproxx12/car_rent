@@ -172,6 +172,7 @@ def services_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             messages.success(request, 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.')
+            form.clean()
             return redirect('cars:services')
     else:
         form = ContactForm()

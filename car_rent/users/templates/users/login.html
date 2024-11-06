@@ -22,7 +22,7 @@
       <label for="{{ form.password.id_for_label}}">Пароль</label>
       {{ form.password }}
       <span class="toggle-password">
-        <img class="img" id="img" alt="Показать пароль" src='{% static "img/icons/eye.png" %}' />
+        <img class="img" id="imgPass" alt="Показать пароль" src='{% static "img/icons/eye.png" %}' />
       </span>
     </div>
     <button type="submit" class="auth-btn">Войти</button>
@@ -31,17 +31,16 @@
 </section>
 
 <script>
-	{% comment %} var input = document.getElementById('password'); {% endcomment %}
   var input = document.querySelector('input[name="password"]');
-  var img = document.getElementById('img');
+  var imgPass = document.getElementById('imgPass');
 
-  img.addEventListener('click', () => {
+  imgPass.addEventListener('click', () => {
     if (input.getAttribute('type') === 'password') {
       input.setAttribute('type', 'text');
-      img.setAttribute('src', '{% static "img/icons/eye-hide.png" %}')
+      imgPass.setAttribute('src', '{% static "img/icons/eye-hide.png" %}')
     } else {
       input.setAttribute('type', 'password');
-      img.setAttribute('src', '{% static "img/icons/eye.png" %}')
+      imgPass.setAttribute('src', '{% static "img/icons/eye.png" %}')
     }
   })
 </script>
