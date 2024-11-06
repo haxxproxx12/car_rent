@@ -1,0 +1,82 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+{% endblock %}
+
+{% block context %}
+<section class="payment-section">
+    <div class="profile-sidebar">
+        <ul>
+            <li><a href="{% url 'users:profile' %}">Личные данные</a></li>
+            <li><a href="{% url 'users:rental_history' %}">История аренды</a></li>
+            <li><a class="active" href="{% url 'users:payment' %}">Платежная информация</a></li>
+        </ul>
+    </div>
+
+    <div class="payment">
+        <h1>Платёжная информация</h1>
+
+        <div id="payment-methods" class="payment-methods show">
+            {% for method in payment_methods %}
+            <div class="payment-method">
+                <p><strong>Платёжная система:</strong> {{ method.get_payment_system_display }}</p>
+                <p><strong>Карта:</strong> **** **** **** {{ method.card_number|slice:"-4:" }}</p>
+                <p><strong>Владелец:</strong> {{ method.card_holder }}</p>
+                <p><strong>Срок действия:</strong> {{ method.expiry_date|date:"m/Y" }}</p>
+                <a href="{% url 'users:delete_payment' method.id %}" class="delete-btn">Удалить</a>
+            </div>
+            {% empty %}
+            <p>Нет добавленных платёжных методов.</p>
+            <button id="add_payment" type="button" class="btn-submit">Добавить платёжную информацию</button>
+            {% endfor %}
+        </div>
+        <div id="payment-form" class="payment-form hidden">
+            <h2>Добавить платёжную информацию</h2>
+            <form method="post" action="{% url 'users:payment' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_card_number">Номер карты</label>
+                    {{ form.card_number }}
+                </div>
+                <div class="form-group">
+                    <label for="id_card_holder">Имя владельца</label>
+                    {{ form.card_holder }}
+                </div>
+                <div class="form-group">
+                    <label for="id_expiry_date">Срок действия</label>
+                    {{ form.expiry_date }}
+                </div>
+                <div class="form-group">
+                    <label for="id_payment_system">Платёжная система</label>
+                    {{ form.payment_system }}
+                </div>
+                <button type="submit" class="btn-submit">Добавить платёжную информацию</button>
+            </form>
+        </div>
+    </div>
+
+    
+</section>
+
+<script>
+    const btn = document.getElementById('add_payment');
+    const payment_method = document.getElementById('payment-methods');
+    const payment_form = document.getElementById('payment-form');
+
+    btn.addEventListener('click', function () {
+        payment_form.classList.remove("hidden");
+        payment_form.classList.add("show");
+
+        // payment_method.classList.remove("show");
+        // payment_method.classList.add("hidden");
+        payment_method.style.display = 'none';
+        // payment_method.classList.add("hidden");
+    })
+</script>
+{% endblock %}

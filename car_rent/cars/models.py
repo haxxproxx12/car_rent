@@ -2,6 +2,7 @@ from django.db import models
 from users.models import User
 from datetime import date
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
 
@@ -82,3 +83,25 @@ class CarImage(models.Model):
     def __str__(self):
         image_name = self.image.name.rsplit('/')
         return f'Изображение "{image_name[1]}" для {self.car.model}'
+    
+class PaymentInfo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    card_number = models.CharField(max_length=16, verbose_name="Номер карты")
+    card_holder = models.CharField(max_length=100, verbose_name="Имя владельца")
+    expiry_date = models.DateField(verbose_name="Срок действия")
+    payment_system = models.CharField(
+        max_length=50, 
+        choices=[
+            ('visa', 'Visa'),
+            ('mastercard', 'MasterCard'),
+            ('mir', 'MIR'),
+            ('paypal', 'PayPal'),
+            ('yandex', 'Yandex Money'),
+            ('qiwi', 'QIWI')
+        ],
+        verbose_name="Платёжная система"
+    )
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.payment_system} - {self.card_number[-4:]}"

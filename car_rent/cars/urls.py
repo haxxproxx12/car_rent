@@ -5,7 +5,6 @@ app_name = 'cars'
 
 urlpatterns = [
     path('', rent, name='index'),
-    # path('cart-add/<int:car_id>', cart_add, name='cart_add'),
     path('cart-delete/<int:cart_id>', cart_delete, name='cart_delete'),
     path('car/<int:car_id>', page_car, name='page_car'),
     path('price/', price_view, name='price'),

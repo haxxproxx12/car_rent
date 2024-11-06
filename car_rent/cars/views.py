@@ -188,3 +188,4 @@ def conditions_view(request):
         'title': 'Условия уренды',
     }
     return render(request, 'cars/conditions.html', context)
+

@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from users.models import User
 from django import forms
+from cars.models import PaymentInfo
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'id': 'username', 'placeholder': 'Введите имя пользователя'}))
@@ -40,4 +41,14 @@ class UserProfileForm(UserChangeForm):
 
     image = forms.ImageField(widget=forms.FileInput())
 
-    
+
+class PaymentInfoForm(forms.ModelForm):
+    class Meta:
+        model = PaymentInfo
+        fields = ['card_number', 'card_holder', 'expiry_date', 'payment_system']
+        widgets = {
+            'expiry_date': forms.DateInput(attrs={'type': 'date'}),
+            'card_number': forms.TextInput(attrs={'placeholder': 'Введите номер карты'}),
+            'card_holder': forms.TextInput(attrs={'placeholder': 'Имя владельца'}),
+            'payment_system': forms.Select(),
+        }

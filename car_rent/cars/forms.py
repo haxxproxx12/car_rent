@@ -1,6 +1,7 @@
-from cars.models import Basket, Cars
+from cars.models import Basket, Cars, PaymentInfo
 from django import forms
 from django.utils import timezone
+
 
 class BasketForm(forms.ModelForm):
     class Meta:
@@ -22,3 +23,4 @@ class ContactForm(forms.Form):
     phone_code = forms.ChoiceField(label='Код страны', choices=[('+7', '+7'), ('+1', '+1'), ('+44', '+44'), ('+49', '+49')], initial='+7', widget=forms.Select(attrs={'class': 'form-control phone-code'}))
     phone_number = forms.CharField(label='Номер телефона', max_length=15, widget=forms.TextInput(attrs={'class': 'form-control phone-number', 'placeholder': '+7 999 999 99 99'}))
     message = forms.CharField(label='Сообщение', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}), required=False)
+

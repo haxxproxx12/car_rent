@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import auth, messages
 from django.contrib.auth import logout
-from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm, PaymentInfoForm
 from users.models import User
-from cars.models import Basket, RentalHistory
+from cars.models import Basket, RentalHistory, PaymentInfo
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -102,3 +102,32 @@ def rental_history(request):
     context = {'history_items': rental,
                'title': 'История аренды',}
     return render(request, 'users/rental_history.html', context)
+
+@login_required
+def payment_view(request):
+    payment_methods = PaymentInfo.objects.filter(user=request.user)
+
+    if request.method == 'POST':
+        form = PaymentInfoForm(request.POST)
+        if form.is_valid():
+            payment_info = form.save(commit=False)
+            payment_info.user = request.user
+            payment_info.save()
+            messages.success(request, "Платёжная информация успешно добавлена.")
+            return redirect('users:payment')
+    else:
+        form = PaymentInfoForm()
+
+    context = {
+        'form': form,
+        'payment_methods': payment_methods,
+        'title': 'Платёжная информация',
+    }
+    return render(request, 'users/payment.html', context)
+
+@login_required
+def delete_payment_method(request, payment_id):
+    payment_method = get_object_or_404(PaymentInfo, id=payment_id, user=request.user)
+    payment_method.delete()
+    messages.success(request, "Платёжная информация успешно удалена.")
+    return redirect('users:payment')
