@@ -170,10 +170,13 @@ def price_view(request):
 def services_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        errors = form.errors
         if form.is_valid():
             messages.success(request, 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.')
-            form.clean()
             return redirect('cars:services')
+        else:
+            for error in errors:
+                    messages.error(request, form.errors[error])
     else:
         form = ContactForm()
 
