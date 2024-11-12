@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db.models import QuerySet
-from cars.models import CarClasses, Cars, CarBrands, Basket, RentalHistory, CarImage
+from cars.models import CarClasses, Cars, CarBrands, Basket, RentalHistory, CarImage, PaymentInfo
 
 # Register your models here.
 
@@ -41,3 +41,8 @@ class BasketAdminInline(admin.TabularInline):
     fields = ('car', 'start_date', 'end_date', 'total',)
     extra = 0
     readonly_fields = ('added_at', 'total',)
+
+@admin.register(PaymentInfo)
+class PaimentInfoAdmin(admin.ModelAdmin):
+    list_display = ('user', 'card_number', 'card_holder', 'expiry_date', 'payment_system', 'added_at',)
+    # readonly_fields = ('user', 'card_number', 'card_holder', 'expiry_date', 'payment_system', 'added_at',)

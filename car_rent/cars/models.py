@@ -12,11 +12,19 @@ class CarClasses(models.Model):
     name = models.CharField(max_length=64, unique=True)
     description = models.TextField()
 
+    class Meta():
+        verbose_name = 'Классы'
+        verbose_name_plural = 'Классы'
+
     def __str__(self) -> str:
         return self.name
 
 class CarBrands(models.Model):
     name = models.CharField(max_length=64, unique=True)
+
+    class Meta():
+        verbose_name = 'Бренды'
+        verbose_name_plural = 'Бренды'
 
     def __str__(self) -> str:
         return self.name
@@ -36,7 +44,10 @@ class Cars(models.Model):
     power = models.IntegerField(null=True, blank=True)
     acceleration = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     engine_capacity = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
-    
+
+    class Meta():
+        verbose_name = 'Автомобили'
+        verbose_name_plural = 'Автомобили'
 
     def __str__(self) -> str:
         return self.model
@@ -47,6 +58,10 @@ class Basket(models.Model):
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today)
     added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        verbose_name = 'Корзины пользователей'
+        verbose_name_plural = 'Корзины пользователей'
 
     def total_days(self):
         if self.start_date == self.end_date:
@@ -72,6 +87,9 @@ class RentalHistory(models.Model):
     rented_at = models.DateTimeField(auto_now_add=True)
     is_returned = models.BooleanField(default=False)
     
+    class Meta():
+        verbose_name = 'Истории аренды пользователей'
+        verbose_name_plural = 'Истории аренды пользователей'
 
     def __str__(self):
         return f"История аренды {self.user.username} - {self.car.brand} {self.car.model}"
@@ -83,6 +101,10 @@ class CarImage(models.Model):
     def __str__(self):
         image_name = self.image.name.rsplit('/')
         return f'Изображение "{image_name[1]}" для {self.car.model}'
+
+    class Meta():
+        verbose_name = 'Изображения автомобилей'
+        verbose_name_plural = 'Изображения автомобилей'
     
 class PaymentInfo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -102,6 +124,10 @@ class PaymentInfo(models.Model):
         verbose_name="Платёжная система"
     )
     added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        verbose_name = 'Способы оплаты пользователей'
+        verbose_name_plural = 'Способы оплаты пользователей'
 
     def __str__(self):
         return f"{self.payment_system} - {self.card_number[-4:]}"
